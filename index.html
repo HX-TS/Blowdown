@@ -52,14 +52,13 @@
     .topnav a { text-decoration: none; }
     .topnav a:hover { color: var(--ink); }
     .topbar-spacer { flex: 1; }
-    .source-link, .button-primary, .button-secondary {
+    .button-primary {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       min-height: 39px; padding: 0 15px; border-radius: 999px; text-decoration: none;
       font-size: 12px; font-weight: 650; transition: transform .15s ease, background .15s ease, border-color .15s ease;
     }
-    .source-link, .button-secondary { color: var(--ink); background: #fffefa; border: 1px solid var(--line); }
     .button-primary { color: white; background: var(--ink); border: 1px solid var(--ink); }
-    .source-link:hover, .button-secondary:hover, .button-primary:hover { transform: translateY(-1px); }
+    .button-primary:hover { transform: translateY(-1px); }
     .button-primary:hover { background: #24513d; }
     .hero { max-width: 840px; margin: 0 auto 30px; text-align: center; }
     .eyebrow {
@@ -104,21 +103,21 @@
       width: 100%; height: 36px; padding: 0 12px 0 33px; color: var(--ink); background: #fffefa;
       border: 1px solid var(--line); border-radius: 10px; outline: none; font-size: 11px;
     }
-    .search-input:focus, .connect-input:focus { border-color: #9caf9d; box-shadow: 0 0 0 3px rgba(85,117,95,.11); }
+    .search-input:focus { border-color: #9caf9d; box-shadow: 0 0 0 3px rgba(85,117,95,.11); }
     .toolbar-button {
       height: 36px; padding: 0 12px; color: var(--ink-2); background: #fffefa;
       border: 1px solid var(--line); border-radius: 10px; font-size: 10px; font-weight: 650;
       white-space: nowrap;
     }
     .toolbar-button:hover { background: #f5f6f0; border-color: #d5dbcf; }
-    .connection-status {
+    .load-status {
       display: inline-flex; align-items: center; gap: 7px; padding: 8px 10px;
       color: #667268; background: #f4f5ef; border: 1px solid #e7e9e1; border-radius: 999px;
       font-size: 10px; white-space: nowrap;
     }
     .status-light { width: 7px; height: 7px; border-radius: 50%; background: #d19a53; }
-    .connection-status.connected .status-light { background: #4e9467; }
-    .connection-status.error .status-light { background: #bd6258; }
+    .load-status.loaded .status-light { background: #4e9467; }
+    .load-status.error .status-light { background: #bd6258; }
     .log-list { padding: 18px; }
     .day-card {
       margin: 0 0 11px; overflow: hidden; background: #fffefa; border: 1px solid var(--line);
@@ -154,37 +153,12 @@
     .empty-icon { display: grid; place-items: center; width: 48px; height: 48px; margin: 0 auto 13px; color: var(--ink); background: #eef1e8; border-radius: 16px; }
     .empty-state h2 { margin: 0 0 7px; font-family: Georgia, "Times New Roman", serif; font-size: 23px; font-weight: 500; letter-spacing: -.03em; }
     .empty-state p { max-width: 440px; margin: 0 auto; color: var(--muted); font-size: 11px; line-height: 1.7; }
-    .empty-actions { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 17px; }
-    .empty-message { margin-top: 12px !important; color: #9a7058 !important; }
-    .setup-panel { margin: 0 18px 18px; padding: 16px 17px; background: #f7f8f3; border: 1px solid #e6eae1; border-radius: 13px; }
-    .setup-panel summary { color: var(--ink-2); cursor: pointer; font-size: 11px; font-weight: 700; }
-    .setup-panel ol { margin: 12px 0 0; padding-left: 20px; color: #66736a; font-size: 10px; line-height: 1.75; }
-    .setup-panel code { padding: 2px 4px; color: #355544; background: #ebeee6; border-radius: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .95em; }
     .footer { display: flex; justify-content: space-between; gap: 12px; padding: 14px 20px 17px; color: #899188; border-top: 1px solid var(--line); font-size: 9px; }
-    .footer a { color: #526b5a; text-decoration: none; }
-    dialog {
-      width: min(490px, calc(100% - 28px)); padding: 0; color: var(--ink); background: var(--card);
-      border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 24px 75px rgba(17,35,24,.22);
-    }
-    dialog::backdrop { background: rgba(18,37,27,.38); backdrop-filter: blur(3px); }
-    .dialog-inner { padding: 22px; }
-    .dialog-head { display: flex; align-items: start; gap: 10px; margin-bottom: 16px; }
-    .dialog-head h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: 23px; font-weight: 500; letter-spacing: -.03em; }
-    .dialog-head p { margin: 5px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
-    .dialog-close { margin-left: auto; width: 31px; height: 31px; color: #6f7b72; background: #f2f4ed; border: 0; border-radius: 9px; font-size: 17px; }
-    .field-label { display: block; margin-bottom: 6px; color: #59685d; font-size: 10px; font-weight: 700; }
-    .connect-input { width: 100%; height: 40px; padding: 0 11px; color: var(--ink); background: white; border: 1px solid var(--line); border-radius: 10px; outline: 0; font-size: 11px; }
-    .field-help { margin: 7px 0 14px; color: #818b83; font-size: 9px; line-height: 1.55; }
-    .dialog-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 17px; }
-    .dialog-note { margin: 0 0 13px; padding: 10px 11px; color: #735b43; background: #faf5ed; border: 1px solid #efe4d3; border-radius: 10px; font-size: 9px; line-height: 1.6; }
-    .toast { position: fixed; right: 20px; bottom: 20px; z-index: 10; max-width: 340px; padding: 11px 14px; color: white; background: var(--ink); border-radius: 11px; box-shadow: var(--shadow); font-size: 11px; opacity: 0; transform: translateY(8px); pointer-events: none; transition: .2s ease; }
-    .toast.visible { opacity: 1; transform: translateY(0); }
     .hidden { display: none !important; }
     @media (max-width: 760px) {
       .page-shell { padding: 17px 15px 32px; }
       .topbar { gap: 14px; margin-bottom: 31px; }
       .topnav { display: none; }
-      .source-link { min-height: 35px; padding: 0 11px; font-size: 10px; }
       .hero { margin-bottom: 23px; }
       .summary-strip { gap: 7px; margin: 22px auto; }
       .summary-card { min-height: 69px; padding: 11px 10px; }
@@ -195,7 +169,6 @@
       .toolbar-spacer { display: none; }
       .search-wrap { order: 3; width: 100%; }
       .toolbar-button { flex: 1; }
-      .connection-status { padding: 7px 8px; }
       .log-list { padding: 11px; }
       .day-summary { gap: 10px; min-height: 62px; padding: 10px; }
       .day-content { padding: 0 10px 12px; }
@@ -208,7 +181,6 @@
       .summary-value.small { font-size: 10px; }
       .day-badge { display: none; }
       .empty-state { padding: 34px 17px; }
-      .hero-actions .button-secondary { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
@@ -223,12 +195,8 @@
       </a>
       <nav class="topnav" aria-label="Main navigation">
         <a href="#daily-log">Daily log</a>
-        <a href="#connection">Connection</a>
       </nav>
       <span class="topbar-spacer"></span>
-      <a class="source-link" href="https://docs.google.com/spreadsheets/d/1XAyrsD9GLGaY3ZnaiWnND25iF3DsvKR_rhKFXkcffmQ/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
-        Open source sheet <span aria-hidden="true">↗</span>
-      </a>
     </header>
 
     <main id="top">
@@ -238,21 +206,20 @@
         <p class="hero-copy">A clear, day-by-day record of field activities, progress and follow-up actions.</p>
         <div class="hero-actions">
           <a class="button-primary" href="#daily-log">View daily log <span aria-hidden="true">↓</span></a>
-          <button class="button-secondary" id="connectTopButton" type="button">Connect Google Sheet</button>
         </div>
         <div class="summary-strip" aria-label="Daily log summary">
           <div class="summary-card"><span class="summary-label">Log days</span><strong class="summary-value" id="dayCount">—</strong></div>
-          <div class="summary-card"><span class="summary-label">Latest day</span><strong class="summary-value small" id="latestDay">Waiting for sheet</strong></div>
-          <div class="summary-card"><span class="summary-label">Connection</span><strong class="summary-value small" id="connectionSummary">Not connected</strong></div>
+          <div class="summary-card"><span class="summary-label">Latest day</span><strong class="summary-value small" id="latestDay">—</strong></div>
+          <div class="summary-card"><span class="summary-label">Log entries</span><strong class="summary-value" id="entryCount">—</strong></div>
         </div>
       </section>
 
       <section class="workspace" id="daily-log" aria-label="Daily activity log">
         <div class="workspace-top">
-          <div class="workspace-title"><strong>Daily activity</strong><span id="lastUpdated">Connect the source sheet to load daily tabs</span></div>
+          <div class="workspace-title"><strong>Daily activity</strong><span id="lastUpdated">Loading daily tabs…</span></div>
           <div class="toolbar-spacer"></div>
-          <div class="connection-status" id="statusPill" aria-live="polite"><span class="status-light"></span><span id="statusText">Not connected</span></div>
-          <button class="toolbar-button" id="refreshButton" type="button" title="Refresh data from Google Sheets">↻ Refresh</button>
+          <div class="load-status" id="statusPill" aria-live="polite"><span class="status-light"></span><span id="statusText">Loading</span></div>
+          <button class="toolbar-button" id="refreshButton" type="button" title="Refresh daily activity">↻ Refresh</button>
           <div class="search-wrap">
             <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
             <input class="search-input" id="searchInput" type="search" placeholder="Search dates and activities…" aria-label="Search daily log">
@@ -264,13 +231,8 @@
             <div class="empty-icon" aria-hidden="true">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 3v4M16 3v4M4 9h16M8 13h3M8 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
             </div>
-            <h2 id="emptyTitle">Connect your daily log</h2>
-            <p id="emptyCopy">Once connected, every non-empty worksheet tab will appear here as a day section. New daily tabs will load automatically when you refresh.</p>
-            <div class="empty-actions">
-              <button class="button-primary" id="connectEmptyButton" type="button">Connect Google Sheet</button>
-              <a class="button-secondary" href="https://docs.google.com/spreadsheets/d/1XAyrsD9GLGaY3ZnaiWnND25iF3DsvKR_rhKFXkcffmQ/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Open source sheet ↗</a>
-            </div>
-            <p class="empty-message hidden" id="emptyMessage"></p>
+            <h2 id="emptyTitle">Loading the daily log</h2>
+            <p id="emptyCopy">Daily activity entries will appear here, grouped by date.</p>
           </div>
           <div id="daysContainer"></div>
           <div class="empty-state hidden" id="noResults">
@@ -278,64 +240,34 @@
             <p>Try another date or search term.</p>
           </div>
         </div>
-        <details class="setup-panel" id="connection">
-          <summary>One-time Google Sheet connection setup</summary>
-          <ol>
-            <li>Open the linked spreadsheet and choose <code>Extensions → Apps Script</code>.</li>
-            <li>Replace the editor contents with the companion <code>Code.gs</code> connector file.</li>
-            <li>Choose <code>Deploy → New deployment → Web app</code>. Set access to the audience that is allowed to see this log, then deploy and copy the web app URL ending in <code>/exec</code>.</li>
-            <li>Choose <strong>Connect Google Sheet</strong> above and paste that URL. The page will then load every non-empty tab and remember the endpoint in this browser. To make a shared GitHub Pages version load for all visitors, set <code>DEFAULT_ENDPOINT</code> near the top of the page script after deciding who is allowed to access the data.</li>
-          </ol>
-        </details>
         <footer class="footer">
           <span>Daily log view · KREJUV FEC Blowdown Tie-In</span>
-          <span>Source: <a href="https://docs.google.com/spreadsheets/d/1XAyrsD9GLGaY3ZnaiWnND25iF3DsvKR_rhKFXkcffmQ/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Google Sheet</a></span>
+          <span>Loads automatically · refresh for updates</span>
         </footer>
       </section>
     </main>
   </div>
 
-  <dialog id="connectDialog" aria-labelledby="dialogTitle">
-    <form class="dialog-inner" id="connectForm" method="dialog">
-      <div class="dialog-head">
-        <div>
-          <h2 id="dialogTitle">Connect the source sheet</h2>
-          <p>Paste the Google Apps Script web app URL for this spreadsheet. It should end in <code>/exec</code>.</p>
-        </div>
-        <button class="dialog-close" id="closeDialogButton" type="button" aria-label="Close">×</button>
-      </div>
-      <p class="dialog-note"><strong>Access matters:</strong> choose an Apps Script deployment audience that matches who may view these project logs. A public deployment can expose the spreadsheet data to anyone who has the endpoint.</p>
-      <label class="field-label" for="endpointInput">Web app URL</label>
-      <input class="connect-input" id="endpointInput" type="url" inputmode="url" placeholder="https://script.google.com/macros/s/.../exec" autocomplete="url" required>
-      <p class="field-help">The endpoint is saved only in this browser's local storage. You can remove it later from this connection dialog.</p>
-      <div class="dialog-actions">
-        <button class="button-secondary" id="disconnectButton" type="button">Disconnect</button>
-        <button class="button-secondary" id="cancelButton" type="button">Cancel</button>
-        <button class="button-primary" type="submit">Connect</button>
-      </div>
-    </form>
-  </dialog>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
     "use strict";
 
-    const STORAGE_KEY = "krejuv-fec-daily-log-endpoint-v1";
-    // Leave blank for browser-by-browser setup. Set this only if the deployed page should load the sheet for every visitor.
-    const DEFAULT_ENDPOINT = "";
-    const savedEndpoint = localStorage.getItem(STORAGE_KEY);
-    const state = { sheets: [], endpoint: savedEndpoint === null ? DEFAULT_ENDPOINT : savedEndpoint, expanded: true, error: "" };
+    // Public Google Sheet. Daily tabs must be named sequentially: Day 1, Day 2, Day 3, ...
+    const SHEET_ID = "1XAyrsD9GLGaY3ZnaiWnND25iF3DsvKR_rhKFXkcffmQ";
+    const AUTO_REFRESH_MS = 60_000;
+    const SCAN_BATCH_SIZE = 8;
+    const MAX_DAY_TABS = 2_000;
+    const CACHE_KEY = "krejuv-fec-daily-log-cache-v1";
+
+    const state = { sheets: [], expanded: true, error: "", lastUpdated: "" };
     const $ = (selector) => document.querySelector(selector);
-    const logList = $("#logList");
     const daysContainer = $("#daysContainer");
     const emptyState = $("#emptyState");
     const emptyTitle = $("#emptyTitle");
     const emptyCopy = $("#emptyCopy");
-    const emptyMessage = $("#emptyMessage");
     const noResults = $("#noResults");
     const statusPill = $("#statusPill");
-    const connectDialog = $("#connectDialog");
-    const endpointInput = $("#endpointInput");
+    let refreshInProgress = false;
 
     function escapeHTML(value) {
       return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
@@ -350,6 +282,7 @@
 
     function parseTabDate(label) {
       const text = String(label || "").trim();
+      if (/^day\s+\d+$/i.test(text)) return null;
       let match = text.match(/^(\d{4})[./-](\d{1,2})[./-](\d{1,2})/);
       if (match) return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
       match = text.match(/^(\d{1,2})[./-](\d{1,2})[./-](\d{2,4})/);
@@ -384,190 +317,218 @@
       return /\b(time|activity|activities|description|task|status|remarks?|work|location|personnel|progress|action|item|start|finish|duration|update|log)\b/.test(text);
     }
 
-    function renderRows(rows) {
+    function getEntryRows(rows) {
       const data = cleanRows(rows);
-      if (!data.length) return '<p class="log-note">No entries in this tab.</p>';
-      const columns = Math.max(...data.map((row) => row.length));
-      if (columns <= 1) {
-        return '<div class="log-notes">' + data.map((row) => '<div class="log-note">' + escapeHTML(row[0]) + '</div>').join("") + '</div>';
+      return data.length && isHeaderRow(data[0]) ? data.slice(1) : data;
+    }
+
+    function formatGvizDate(value) {
+      const match = String(value).match(/^Date\((\d+),(\d+),(\d+)(?:,(\d+),(\d+),(\d+))?\)$/);
+      if (!match) return String(value);
+      const [, year, month, day, hour = "0", minute = "0", second = "0"] = match;
+      const y = Number(year);
+      const m = Number(month);
+      const d = Number(day);
+      const hh = Number(hour);
+      const mm = Number(minute);
+      const ss = Number(second);
+      const time = `${String(hh).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
+      if (y === 1899 && m === 11 && d === 30) return time;
+      const date = `${String(d).padStart(2, "0")}/${String(m + 1).padStart(2, "0")}/${y}`;
+      return hh || mm || ss ? `${date} ${time}` : date;
+    }
+
+    function readGvizCell(cell) {
+      if (!cell) return "";
+      if (cell.f !== undefined && cell.f !== null && String(cell.f).trim() !== "") return String(cell.f).trim();
+      if (cell.v === undefined || cell.v === null) return "";
+      if (typeof cell.v === "string" && /^Date\(/.test(cell.v)) return formatGvizDate(cell.v);
+      return String(cell.v).trim();
+    }
+
+    function parseGvizResponse(text) {
+      const start = text.indexOf("{");
+      const end = text.lastIndexOf("}");
+      if (start === -1 || end === -1) throw new Error("Google Sheets returned an unreadable response.");
+      return JSON.parse(text.slice(start, end + 1));
+    }
+
+    function getGvizError(result) {
+      const errors = Array.isArray(result?.errors) ? result.errors : [];
+      return errors.map((item) => item.detailed_message || item.message || "").filter(Boolean).join(" ");
+    }
+
+    function rowsFromGviz(result) {
+      if (!result?.table || !Array.isArray(result.table.cols) || !Array.isArray(result.table.rows)) return null;
+      const headers = result.table.cols.map((column, index) => String(column.label || column.id || `Field ${index + 1}`).trim());
+      const body = result.table.rows.map((row) => headers.map((_, index) => readGvizCell(row.c?.[index])));
+      return cleanRows([headers, ...body]);
+    }
+
+    async function fetchDayTab(dayNumber) {
+      const url = new URL(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq`);
+      url.searchParams.set("sheet", `Day ${dayNumber}`);
+      url.searchParams.set("headers", "1");
+      url.searchParams.set("tqx", "out:json");
+      url.searchParams.set("_", String(Date.now()));
+
+      const response = await fetch(url.href, { cache: "no-store" });
+      if (!response.ok) {
+        if ([400, 404].includes(response.status)) return null;
+        throw new Error(`Google Sheets request failed (${response.status}).`);
       }
-      const hasHeader = data.length > 1 && isHeaderRow(data[0]);
-      const headers = hasHeader ? data[0] : Array.from({ length: columns }, (_, index) => `Field ${index + 1}`);
-      const body = hasHeader ? data.slice(1) : data;
-      const headerHTML = '<thead><tr>' + Array.from({ length: columns }, (_, index) => '<th>' + escapeHTML(headers[index] || `Field ${index + 1}`) + '</th>').join("") + '</tr></thead>';
-      const rowsHTML = body.map((row) => '<tr>' + Array.from({ length: columns }, (_, index) => '<td>' + escapeHTML(row[index] || "") + '</td>').join("") + '</tr>').join("");
-      if (!body.length) return '<div class="table-scroll"><table class="log-table">' + headerHTML + '<tbody></tbody></table></div>';
-      return '<div class="table-scroll"><table class="log-table">' + headerHTML + '<tbody>' + rowsHTML + '</tbody></table></div>';
+
+      const result = parseGvizResponse(await response.text());
+      if (result.status && result.status !== "ok") {
+        if (dayNumber > 1) return null;
+        throw new Error(getGvizError(result) || "Could not read the Day 1 tab.");
+      }
+
+      const rows = rowsFromGviz(result);
+      if (!rows) return null;
+      return { name: `Day ${dayNumber}`, index: dayNumber, rows };
+    }
+
+    async function fetchAllDayTabs() {
+      const first = await fetchDayTab(1);
+      if (!first) {
+        throw new Error('Could not read a tab named "Day 1". Check that the sheet is public and the tab name matches.');
+      }
+
+      const sheets = [first];
+      let nextDay = 2;
+      while (nextDay <= MAX_DAY_TABS) {
+        const count = Math.min(SCAN_BATCH_SIZE, MAX_DAY_TABS - nextDay + 1);
+        const batch = await Promise.all(
+          Array.from({ length: count }, (_, index) => fetchDayTab(nextDay + index))
+        );
+        const firstMissing = batch.findIndex((sheet) => !sheet);
+        const existing = firstMissing === -1 ? batch : batch.slice(0, firstMissing);
+        sheets.push(...existing);
+        if (firstMissing !== -1) break;
+        nextDay += count;
+      }
+      return sheets;
     }
 
     function daySearchText(sheet) {
       return [sheet.name, ...cleanRows(sheet.rows).flat()].join(" ").toLowerCase();
     }
 
+    function setStatus(message, type = "") {
+      $("#statusText").textContent = message;
+      statusPill.classList.toggle("loaded", type === "loaded");
+      statusPill.classList.toggle("error", type === "error");
+    }
+
+    function renderRows(rows) {
+      const data = cleanRows(rows);
+      if (!data.length) return '<p class="log-note">No entries in this day.</p>';
+      const columns = Math.max(...data.map((row) => row.length));
+      const hasHeader = isHeaderRow(data[0]);
+      if (columns <= 1 && !hasHeader) {
+        return '<div class="log-notes">' + data.map((row) => '<div class="log-note">' + escapeHTML(row[0]) + '</div>').join("") + '</div>';
+      }
+      const headers = hasHeader ? data[0] : Array.from({ length: columns }, (_, index) => `Field ${index + 1}`);
+      const body = hasHeader ? data.slice(1) : data;
+      const headerHTML = '<thead><tr>' + Array.from({ length: columns }, (_, index) => '<th>' + escapeHTML(headers[index] || `Field ${index + 1}`) + '</th>').join("") + '</tr></thead>';
+      const rowsHTML = body.map((row) => '<tr>' + Array.from({ length: columns }, (_, index) => '<td>' + escapeHTML(row[index] || "") + '</td>').join("") + '</tr>').join("");
+      return '<div class="table-scroll"><table class="log-table">' + headerHTML + '<tbody>' + rowsHTML + '</tbody></table></div>';
+    }
+
     function render() {
       const sheets = sortSheets(state.sheets);
       const search = $("#searchInput").value.trim().toLowerCase();
       const visible = sheets.filter((sheet) => !search || daySearchText(sheet).includes(search));
+      const totalEntries = sheets.reduce((sum, sheet) => sum + getEntryRows(sheet.rows).length, 0);
       $("#dayCount").textContent = String(sheets.length);
-      $("#latestDay").textContent = sheets.length ? formatDate(sheets[0].name) : "Waiting for sheet";
-      $("#connectionSummary").textContent = state.error ? "Needs attention" : state.endpoint && sheets.length ? "Connected" : state.endpoint ? "No daily tabs" : "Not connected";
-      $("#lastUpdated").textContent = state.lastUpdated ? `Updated ${new Intl.DateTimeFormat("en-MY", { dateStyle: "medium", timeStyle: "short" }).format(new Date(state.lastUpdated))}` : "Connect the source sheet to load daily tabs";
-      $("#statusText").textContent = state.error ? "Connection error" : state.endpoint && sheets.length ? "Sheet connected" : state.endpoint ? "Connected · no entries" : "Not connected";
-      statusPill.classList.toggle("connected", Boolean(state.endpoint && !state.error));
-      statusPill.classList.toggle("error", Boolean(state.error));
+      $("#latestDay").textContent = sheets.length ? formatDate(sheets[0].name) : "—";
+      $("#entryCount").textContent = String(totalEntries);
+      $("#lastUpdated").textContent = state.lastUpdated
+        ? `Updated ${new Intl.DateTimeFormat("en-MY", { dateStyle: "medium", timeStyle: "short" }).format(new Date(state.lastUpdated))}`
+        : state.error ? "Daily log unavailable" : "Loading daily tabs…";
       $("#expandButton").textContent = state.expanded ? "Collapse all" : "Expand all";
 
-      daysContainer.innerHTML = visible.map((sheet, index) => {
+      daysContainer.innerHTML = visible.map((sheet) => {
         const rows = cleanRows(sheet.rows);
+        const count = getEntryRows(rows).length;
         const date = parseTabDate(sheet.name);
-        const dateTile = date ? String(date.getDate()).padStart(2, "0") : "LOG";
-        const status = sheet.id !== undefined ? `<a class="day-badge" href="${escapeHTML('https://docs.google.com/spreadsheets/d/1XAyrsD9GLGaY3ZnaiWnND25iF3DsvKR_rhKFXkcffmQ/edit#gid=' + encodeURIComponent(sheet.id))}" target="_blank" rel="noopener noreferrer">Open tab ↗</a>` : `<span class="day-badge">${rows.length} ${rows.length === 1 ? "row" : "rows"}</span>`;
+        const dateTile = date ? String(date.getDate()).padStart(2, "0") : String(sheet.index).padStart(2, "0");
         return `<details class="day-card" data-day="${escapeHTML(sheet.name)}" ${state.expanded ? "open" : ""}>
           <summary class="day-summary">
             <span class="calendar-icon">${escapeHTML(dateTile)}</span>
-            <span class="day-heading"><strong>${escapeHTML(formatDate(sheet.name))}</strong><span>${rows.length} ${rows.length === 1 ? "log entry" : "log entries"}</span></span>
-            ${status}
+            <span class="day-heading"><strong>${escapeHTML(formatDate(sheet.name))}</strong><span>${count} ${count === 1 ? "activity" : "activities"}</span></span>
+            <span class="day-badge">${count} ${count === 1 ? "entry" : "entries"}</span>
             <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </summary>
           <div class="day-content">${renderRows(rows)}</div>
         </details>`;
       }).join("");
 
-      const hasRows = sheets.length > 0;
-      emptyState.classList.toggle("hidden", hasRows);
-      noResults.classList.toggle("hidden", !hasRows || visible.length > 0);
-      if (!hasRows) {
-        emptyTitle.textContent = state.error ? "Could not load the daily log" : state.endpoint ? "No daily entries found" : "Connect your daily log";
+      const hasSheets = sheets.length > 0;
+      emptyState.classList.toggle("hidden", hasSheets);
+      noResults.classList.toggle("hidden", !hasSheets || visible.length > 0);
+      if (!hasSheets) {
+        emptyTitle.textContent = state.error ? "Daily log unavailable" : "Loading the daily log";
         emptyCopy.textContent = state.error
-          ? "Check the web app URL and its access settings, then try again."
-          : state.endpoint
-            ? "The connector is responding, but it did not find any non-empty worksheet tabs. Add log entries to a day tab and refresh."
-            : "Once connected, every non-empty worksheet tab will appear here as a day section. New daily tabs will load automatically when you refresh.";
-        emptyMessage.textContent = state.error || "";
-        emptyMessage.classList.toggle("hidden", !state.error);
+          ? state.error
+          : "Daily activity entries will appear here, grouped by date.";
       }
     }
 
-    let toastTimer;
-    function showToast(message) {
-      const toast = $("#toast");
-      toast.textContent = message;
-      toast.classList.add("visible");
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove("visible"), 2800);
-    }
-
-    function showConnectDialog() {
-      endpointInput.value = state.endpoint;
-      if (typeof connectDialog.showModal === "function") connectDialog.showModal();
-      else connectDialog.setAttribute("open", "");
-      setTimeout(() => endpointInput.focus(), 40);
-    }
-
-    function normalizeEndpoint(value) {
-      const url = new URL(value.trim());
-      if (url.protocol !== "https:") throw new Error("Enter a secure https:// web app URL.");
-      if (!/script\.google\.com|script\.googleusercontent\.com/i.test(url.hostname)) throw new Error("Use the Google Apps Script web app URL ending in /exec.");
-      if (!/\/exec\/?$/.test(url.pathname)) throw new Error("The web app URL must end in /exec.");
-      return url.href;
-    }
-
-    function loadFromEndpoint() {
-      if (!state.endpoint) { state.error = ""; state.sheets = []; render(); return; }
-      state.error = "";
-      state.sheets = [];
-      render();
-      const callbackName = "krejuvFecLogCallback";
-      const timeout = setTimeout(() => {
-        delete window[callbackName];
-        state.error = "The connector did not respond. Check the deployment URL and access settings.";
+    function loadCache() {
+      try {
+        const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+        if (!cached || !Array.isArray(cached.sheets)) return;
+        state.sheets = cached.sheets;
+        state.lastUpdated = cached.lastUpdated || "";
+        setStatus("Cached data", "loaded");
         render();
-      }, 15000);
-      window[callbackName] = (payload) => {
-        clearTimeout(timeout);
-        delete window[callbackName];
-        if (!payload || !Array.isArray(payload.sheets)) {
-          state.error = "The connector response is not in the expected format. Replace Code.gs with the supplied connector and redeploy.";
-          render();
-          return;
-        }
-        state.sheets = payload.sheets.map((sheet, index) => ({
-          name: String(sheet.name || `Day ${index + 1}`),
-          id: sheet.id,
-          index: sheet.index ?? index,
-          rows: cleanRows(sheet.rows)
-        })).filter((sheet) => sheet.rows.length > 0);
-        state.lastUpdated = payload.updatedAt || new Date().toISOString();
+      } catch (error) {
+        localStorage.removeItem(CACHE_KEY);
+      }
+    }
+
+    function saveCache() {
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ sheets: state.sheets, lastUpdated: state.lastUpdated }));
+      } catch (error) {}
+    }
+
+    async function refreshGoogleSheets() {
+      if (refreshInProgress) return;
+      refreshInProgress = true;
+      setStatus("Loading", "");
+      try {
+        state.sheets = await fetchAllDayTabs();
+        state.lastUpdated = new Date().toISOString();
         state.error = "";
         state.expanded = true;
-        render();
-        if (state.sheets.length) showToast(`${state.sheets.length} daily ${state.sheets.length === 1 ? "tab" : "tabs"} loaded.`);
-      };
-      try {
-        const url = new URL(state.endpoint);
-        url.searchParams.set("callback", callbackName);
-        url.searchParams.set("_", String(Date.now()));
-        const script = document.createElement("script");
-        script.src = url.href;
-        script.async = true;
-        script.onerror = () => {
-          clearTimeout(timeout);
-          delete window[callbackName];
-          state.error = "Could not reach the connector. Verify the URL, deployment and access settings.";
-          render();
-        };
-        document.head.appendChild(script);
-        script.onload = () => script.remove();
+        saveCache();
+        setStatus("Up to date", "loaded");
       } catch (error) {
-        clearTimeout(timeout);
-        state.error = error.message || "Invalid connector URL.";
+        state.error = error.message || "Could not load the daily log.";
+        setStatus("Update failed", "error");
+      } finally {
+        refreshInProgress = false;
         render();
       }
     }
 
-    $("#connectTopButton").addEventListener("click", showConnectDialog);
-    $("#connectEmptyButton").addEventListener("click", showConnectDialog);
-    $("#closeDialogButton").addEventListener("click", () => connectDialog.close());
-    $("#cancelButton").addEventListener("click", () => connectDialog.close());
-    $("#connectForm").addEventListener("submit", (event) => {
-      event.preventDefault();
-      try {
-        state.endpoint = normalizeEndpoint(endpointInput.value);
-        localStorage.setItem(STORAGE_KEY, state.endpoint);
-        connectDialog.close();
-        loadFromEndpoint();
-      } catch (error) {
-        endpointInput.setCustomValidity(error.message || "Enter a valid web app URL.");
-        endpointInput.reportValidity();
-        endpointInput.addEventListener("input", () => endpointInput.setCustomValidity(""), { once: true });
-      }
-    });
-    $("#disconnectButton").addEventListener("click", () => {
-      localStorage.setItem(STORAGE_KEY, "");
-      state.endpoint = "";
-      state.error = "";
-      state.sheets = [];
-      state.lastUpdated = "";
-      state.expanded = true;
-      connectDialog.close();
-      render();
-      showToast("Google Sheet disconnected from this browser.");
-    });
-    $("#refreshButton").addEventListener("click", () => {
-      if (!state.endpoint) { showConnectDialog(); return; }
-      loadFromEndpoint();
-    });
+    $("#refreshButton").addEventListener("click", refreshGoogleSheets);
     $("#searchInput").addEventListener("input", render);
     $("#expandButton").addEventListener("click", () => {
       state.expanded = !state.expanded;
       render();
     });
-    connectDialog.addEventListener("click", (event) => {
-      if (event.target === connectDialog) connectDialog.close();
-    });
 
+    loadCache();
     render();
-    if (state.endpoint) loadFromEndpoint();
+    refreshGoogleSheets();
+    setInterval(refreshGoogleSheets, AUTO_REFRESH_MS);
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") refreshGoogleSheets();
+    });
   </script>
 </body>
 </html>
