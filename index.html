@@ -1,452 +1,601 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f7f7f1">
-  <link rel="icon" type="image/png" href="https://i.ibb.co/gbgLwSqg/Chat-GPT-Image-Jul-26-2026-04-53-23-AM-2.png">
-  <meta name="description" content="Daily operations log for the KREJUV FEC Blowdown Tie-In project.">
-  <title>KREJUV FEC | Blowdown Tie-In Daily Log</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f4f1">
+  <meta name="description" content="Live three-day KREJUV FEC blowdown tie-in schedule.">
+  <title>KREJUV FEC — Blowdown Tie-In</title>
   <style>
     :root {
       color-scheme: light;
-      --ink: #183b2d;
-      --ink-2: #315343;
-      --muted: #748077;
-      --line: #e5e8df;
-      --paper: #f7f7f1;
-      --card: #fffefa;
-      --soft: #eef1e8;
-      --accent: #b6c1a3;
-      --shadow: 0 14px 40px rgba(35, 54, 40, .075);
-      --radius-lg: 22px;
-      --radius-md: 14px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --ink: #101010;
+      --paper: #f4f4f1;
+      --white: #fff;
+      --line: #171717;
+      --muted: #6d6d68;
+      --soft-line: #d7d7d2;
+      --accent: #b8f34a;
+      --danger: #b12828;
+      --page-width: 1120px;
     }
+
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
+      background: var(--paper);
       color: var(--ink);
-      background:
-        repeating-linear-gradient(135deg, rgba(57, 79, 63, .025) 0 1px, transparent 1px 8px) left top / 50px 100% no-repeat,
-        repeating-linear-gradient(135deg, rgba(57, 79, 63, .025) 0 1px, transparent 1px 8px) right top / 50px 100% no-repeat,
-        var(--paper);
-      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
-    button, input { font: inherit; }
-    button { cursor: pointer; }
+    button, a, summary { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
     a { color: inherit; }
-    .page-shell { max-width: 1220px; margin: 0 auto; padding: 24px 28px 52px; }
+
+    .page-shell {
+      width: min(var(--page-width), calc(100% - 48px));
+      margin: 0 auto;
+    }
+
     .topbar {
-      display: flex; align-items: center; gap: 34px; min-height: 48px;
-      padding: 0 2px; margin-bottom: 42px;
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      gap: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
     }
-    .brand { display: inline-flex; gap: 10px; align-items: center; text-decoration: none; font-weight: 750; letter-spacing: -.03em; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; }
     .brand-mark {
-      display: grid; place-items: center; width: 31px; height: 31px; border-radius: 10px;
-      color: #f9f9f3; background: var(--ink); font-size: 12px; font-weight: 800; letter-spacing: -.06em;
-      box-shadow: 0 4px 10px rgba(24,59,45,.18);
+      width: 17px;
+      height: 17px;
+      display: inline-block;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      position: relative;
     }
-    .brand-text { font-size: 14px; }
-    .topnav { display: flex; align-items: center; gap: 27px; color: #818981; font-size: 12px; }
-    .topnav a { text-decoration: none; }
-    .topnav a:hover { color: var(--ink); }
-    .topbar-spacer { flex: 1; }
-    .button-primary {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      min-height: 39px; padding: 0 15px; border-radius: 999px; text-decoration: none;
-      font-size: 12px; font-weight: 650; transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      top: 4px;
+      left: 4px;
+      border-radius: 50%;
+      background: var(--ink);
     }
-    .button-primary { color: white; background: var(--ink); border: 1px solid var(--ink); }
-    .button-primary:hover { transform: translateY(-1px); }
-    .button-primary:hover { background: #24513d; }
-    .hero { max-width: 840px; margin: 0 auto 30px; text-align: center; }
+    .topbar-note { color: var(--muted); font-weight: 600; letter-spacing: .07em; }
+
+    .hero {
+      padding: clamp(44px, 8vw, 96px) 0 34px;
+      border-bottom: 2px solid var(--line);
+    }
     .eyebrow {
-      display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px;
-      color: var(--ink-2); background: #f1f3eb; border: 1px solid #e3e8dc;
-      border-radius: 999px; font-size: 10px; font-weight: 750; letter-spacing: .09em; text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
     }
-    .eyebrow-dot { width: 6px; height: 6px; background: #6f8a63; border-radius: 50%; box-shadow: 0 0 0 3px rgba(111,138,99,.13); }
+    .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--ink); }
     h1 {
-      margin: 16px 0 9px; color: var(--ink); font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(34px, 5vw, 56px); line-height: 1.02; letter-spacing: -.055em; font-weight: 500;
+      max-width: 920px;
+      margin: 0;
+      font-size: clamp(46px, 8vw, 104px);
+      line-height: .86;
+      letter-spacing: -.075em;
+      font-weight: 800;
+      text-transform: uppercase;
     }
-    h1 span { display: block; color: #8b978c; }
-    .hero-copy { max-width: 600px; margin: 0 auto; color: var(--muted); font-size: 13px; line-height: 1.7; }
-    .hero-actions { display: flex; justify-content: center; gap: 10px; margin-top: 21px; }
-    .summary-strip {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 800px;
-      margin: 27px auto 29px;
+    h1 span { display: block; }
+    h1 span + span { margin-top: 10px; }
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-top: 34px;
     }
-    .summary-card {
-      min-height: 78px; padding: 14px 17px; text-align: left; background: rgba(255,254,250,.78);
-      border: 1px solid var(--line); border-radius: 15px;
+    .hero-description {
+      max-width: 480px;
+      margin: 0;
+      color: #3d3d3a;
+      font-size: 14px;
+      line-height: 1.55;
     }
-    .summary-label { display: block; margin-bottom: 7px; color: #879088; font-size: 10px; font-weight: 650; letter-spacing: .07em; text-transform: uppercase; }
-    .summary-value { color: var(--ink); font-size: 17px; font-weight: 730; letter-spacing: -.03em; }
-    .summary-value.small { font-size: 13px; }
-    .workspace {
-      overflow: hidden; background: rgba(255,254,250,.92); border: 1px solid #e2e5dc;
-      border-radius: var(--radius-lg); box-shadow: var(--shadow);
-    }
-    .workspace-top {
-      display: flex; align-items: center; gap: 15px; padding: 17px 20px;
-      border-bottom: 1px solid var(--line); background: rgba(250,250,245,.8);
-    }
-    .workspace-title { min-width: 165px; }
-    .workspace-title strong { display: block; font-size: 13px; letter-spacing: -.02em; }
-    .workspace-title span { display: block; margin-top: 3px; color: var(--muted); font-size: 10px; }
-    .toolbar-spacer { flex: 1; }
-    .search-wrap { position: relative; width: min(300px, 35vw); }
-    .search-icon { position: absolute; left: 11px; top: 10px; color: #89948b; pointer-events: none; }
-    .search-input {
-      width: 100%; height: 36px; padding: 0 12px 0 33px; color: var(--ink); background: #fffefa;
-      border: 1px solid var(--line); border-radius: 10px; outline: none; font-size: 11px;
-    }
-    .search-input:focus { border-color: #9caf9d; box-shadow: 0 0 0 3px rgba(85,117,95,.11); }
-    .toolbar-button {
-      height: 36px; padding: 0 12px; color: var(--ink-2); background: #fffefa;
-      border: 1px solid var(--line); border-radius: 10px; font-size: 10px; font-weight: 650;
+    .day-count {
+      flex: 0 0 auto;
+      border: 1.5px solid var(--line);
+      padding: 10px 13px 9px;
+      font-size: 10px;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
       white-space: nowrap;
     }
-    .toolbar-button:hover { background: #f5f6f0; border-color: #d5dbcf; }
-    .load-status {
-      display: inline-flex; align-items: center; gap: 7px; padding: 8px 10px;
-      color: #667268; background: #f4f5ef; border: 1px solid #e7e9e1; border-radius: 999px;
-      font-size: 10px; white-space: nowrap;
+
+    .schedule-section { padding: 26px 0 68px; }
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 14px;
     }
-    .status-light { width: 7px; height: 7px; border-radius: 50%; background: #d19a53; }
-    .load-status.loaded .status-light { background: #4e9467; }
-    .load-status.error .status-light { background: #bd6258; }
-    .log-list { padding: 18px; }
+    .section-label {
+      margin: 0;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .section-controls { display: flex; align-items: center; gap: 8px; }
+    .text-button {
+      min-height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 0;
+      background: transparent;
+      color: var(--ink);
+      padding: 0 12px;
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .text-button:hover { background: var(--ink); color: var(--white); }
+    .text-button:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid #507b00; outline-offset: 3px; }
+    .text-button[disabled] { cursor: wait; opacity: .55; }
+
+    .sync-strip {
+      min-height: 43px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 18px;
+      padding: 0 13px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      font-size: 11px;
+    }
+    .sync-label { display: flex; align-items: center; gap: 9px; font-weight: 700; }
+    .sync-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); border: 1px solid var(--line); }
+    .sync-dot.is-error { background: #f29c9c; }
+    .sync-meta { color: var(--muted); text-align: right; }
+
+    .day-list { display: grid; gap: 13px; }
     .day-card {
-      margin: 0 0 11px; overflow: hidden; background: #fffefa; border: 1px solid var(--line);
-      border-radius: 15px; transition: border-color .15s ease, box-shadow .15s ease;
+      border: 2px solid var(--line);
+      background: var(--white);
     }
-    .day-card:hover { border-color: #d8ded3; }
-    .day-card[open] { box-shadow: 0 5px 18px rgba(37,55,42,.035); }
+    .day-card[open] { box-shadow: 5px 5px 0 var(--ink); }
     .day-summary {
-      display: flex; align-items: center; gap: 14px; min-height: 68px; padding: 12px 15px;
-      list-style: none; cursor: pointer;
+      min-height: 88px;
+      display: grid;
+      grid-template-columns: minmax(150px, 1.05fr) minmax(120px, .85fr) minmax(170px, 1.2fr) minmax(56px, auto) 26px;
+      align-items: center;
+      gap: 20px;
+      padding: 14px 18px;
+      cursor: pointer;
+      list-style: none;
     }
     .day-summary::-webkit-details-marker { display: none; }
-    .calendar-icon {
-      display: grid; place-items: center; flex: 0 0 39px; height: 39px; border-radius: 12px;
-      color: var(--ink); background: #eff2e9; font-size: 11px; font-weight: 750;
+    .day-index-wrap { display: flex; align-items: baseline; gap: 12px; }
+    .day-index {
+      font-size: clamp(25px, 4vw, 36px);
+      line-height: .95;
+      letter-spacing: -.06em;
+      font-weight: 800;
+      text-transform: uppercase;
     }
-    .day-heading { min-width: 0; flex: 1; }
-    .day-heading strong { display: block; overflow: hidden; color: var(--ink); font-size: 13px; font-weight: 720; text-overflow: ellipsis; white-space: nowrap; }
-    .day-heading span { display: block; margin-top: 4px; color: #879088; font-size: 10px; }
-    .day-badge { padding: 6px 9px; color: #667467; background: #f5f6f1; border-radius: 999px; font-size: 9px; font-weight: 650; white-space: nowrap; }
-    .chevron { width: 17px; height: 17px; color: #829085; transition: transform .2s ease; }
-    details[open] .chevron { transform: rotate(180deg); }
-    .day-content { padding: 0 15px 16px 68px; }
-    .table-scroll { overflow-x: auto; border: 1px solid #e9ece5; border-radius: 11px; }
-    .log-table { width: 100%; border-collapse: collapse; font-size: 11px; line-height: 1.5; }
-    .log-table th { padding: 9px 11px; color: #68766b; background: #f5f6f0; font-size: 9px; font-weight: 750; letter-spacing: .06em; text-align: left; text-transform: uppercase; white-space: nowrap; }
-    .log-table td { min-width: 100px; padding: 10px 11px; color: #435348; border-top: 1px solid #edf0e9; vertical-align: top; white-space: pre-wrap; }
-    .log-table td:first-child { color: var(--ink); font-weight: 650; }
-    .log-notes { display: grid; gap: 8px; }
-    .log-note { position: relative; padding: 11px 13px 11px 15px; color: #435348; background: #f8f9f4; border: 1px solid #ecefe7; border-radius: 10px; font-size: 11px; line-height: 1.65; white-space: pre-wrap; }
-    .log-note::before { position: absolute; top: 13px; bottom: 13px; left: 0; width: 3px; background: #a9b89d; border-radius: 0 3px 3px 0; content: ""; }
-    .empty-state { padding: 44px 22px 48px; text-align: center; }
-    .empty-icon { display: grid; place-items: center; width: 48px; height: 48px; margin: 0 auto 13px; color: var(--ink); background: #eef1e8; border-radius: 16px; }
-    .empty-state h2 { margin: 0 0 7px; font-family: Georgia, "Times New Roman", serif; font-size: 23px; font-weight: 500; letter-spacing: -.03em; }
-    .empty-state p { max-width: 440px; margin: 0 auto; color: var(--muted); font-size: 11px; line-height: 1.7; }
-    .footer { display: flex; justify-content: space-between; gap: 12px; padding: 14px 20px 17px; color: #899188; border-top: 1px solid var(--line); font-size: 9px; }
-    .hidden { display: none !important; }
-    @media (max-width: 760px) {
-      .page-shell { padding: 17px 15px 32px; }
-      .topbar { gap: 14px; margin-bottom: 31px; }
-      .topnav { display: none; }
-      .hero { margin-bottom: 23px; }
-      .summary-strip { gap: 7px; margin: 22px auto; }
-      .summary-card { min-height: 69px; padding: 11px 10px; }
-      .summary-value { font-size: 15px; }
-      .summary-value.small { font-size: 11px; }
-      .workspace-top { flex-wrap: wrap; gap: 9px; padding: 14px; }
-      .workspace-title { flex: 1; }
-      .toolbar-spacer { display: none; }
-      .search-wrap { order: 3; width: 100%; }
-      .toolbar-button { flex: 1; }
-      .log-list { padding: 11px; }
-      .day-summary { gap: 10px; min-height: 62px; padding: 10px; }
-      .day-content { padding: 0 10px 12px; }
-      .footer { flex-direction: column; padding: 13px 15px; }
+    .day-small-label { color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    .summary-field { min-width: 0; }
+    .field-label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
     }
-    @media (max-width: 430px) {
-      h1 { font-size: 35px; }
-      .summary-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .summary-label { font-size: 8px; letter-spacing: .04em; }
-      .summary-value.small { font-size: 10px; }
-      .day-badge { display: none; }
-      .empty-state { padding: 34px 17px; }
+    .field-value { display: block; overflow: hidden; font-size: 13px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+    .day-count-badge {
+      min-width: 56px;
+      text-align: right;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
     }
+    .day-count-badge .count-number { font-size: 21px; letter-spacing: -.05em; }
+    .chevron {
+      width: 26px;
+      height: 26px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      font-size: 16px;
+      line-height: 1;
+      transition: transform .18s ease;
+    }
+    .day-card[open] .chevron { transform: rotate(180deg); }
+    .day-content { border-top: 1.5px solid var(--line); }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    thead { background: var(--ink); color: var(--white); }
+    th {
+      padding: 11px 17px;
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    th:first-child, td:first-child { width: 150px; border-right: 1px solid var(--line); }
+    td { padding: 13px 17px; border-bottom: 1px solid var(--soft-line); vertical-align: top; font-size: 13px; line-height: 1.45; }
+    tbody tr:last-child td { border-bottom: 0; }
+    td:first-child { font-variant-numeric: tabular-nums; font-weight: 700; white-space: nowrap; }
+    .activity-cell { white-space: pre-wrap; }
+    .empty-row td { padding: 20px 17px; color: var(--muted); font-size: 12px; }
+    .stale-note { display: none; padding: 10px 17px; border-top: 1px solid var(--soft-line); color: var(--danger); font-size: 11px; }
+    .stale-note.is-visible { display: block; }
+    .error-card { padding: 18px; color: var(--danger); font-size: 12px; line-height: 1.5; }
+    .error-card button { margin-top: 10px; border: 0; padding: 0; background: none; color: var(--ink); text-decoration: underline; font-weight: 700; cursor: pointer; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 17px 0 26px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.5;
+    }
+    footer a { color: var(--ink); font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+    @media (max-width: 720px) {
+      .page-shell { width: min(100% - 28px, var(--page-width)); }
+      .topbar { min-height: 50px; font-size: 9px; }
+      .topbar-note { max-width: 45%; text-align: right; line-height: 1.35; }
+      .hero { padding: 55px 0 27px; }
+      h1 { font-size: clamp(43px, 13vw, 76px); }
+      .hero-bottom { align-items: flex-start; flex-direction: column; gap: 16px; margin-top: 24px; }
+      .hero-description { font-size: 13px; }
+      .section-heading { align-items: flex-start; }
+      .section-controls { gap: 6px; }
+      .text-button { min-height: 34px; padding: 0 8px; font-size: 9px; }
+      .sync-strip { min-height: 42px; padding: 8px 10px; font-size: 10px; }
+      .sync-meta { max-width: 46%; }
+      .day-list { gap: 11px; }
+      .day-summary {
+        min-height: 81px;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        gap: 10px;
+        padding: 13px 12px;
+      }
+      .day-index-wrap { grid-column: 1; grid-row: 1; gap: 9px; }
+      .summary-field[data-role="date"] { grid-column: 1; grid-row: 2; margin-top: -1px; }
+      .summary-field[data-role="location"] { display: none; }
+      .day-count-badge { grid-column: 2; grid-row: 1 / span 2; min-width: 42px; }
+      .chevron { grid-column: 3; grid-row: 1 / span 2; }
+      .day-index { font-size: 26px; }
+      .day-small-label { font-size: 8px; }
+      .field-label { margin-bottom: 3px; font-size: 8px; }
+      .field-value { font-size: 12px; }
+      th:first-child, td:first-child { width: 86px; }
+      th { padding: 10px 11px; font-size: 9px; }
+      td { padding: 12px 11px; font-size: 12px; }
+      footer { flex-direction: column; gap: 8px; }
+    }
+
+    @media (max-width: 380px) {
+      .page-shell { width: calc(100% - 22px); }
+      .section-heading { flex-direction: column; }
+      .day-count { padding: 9px 10px; }
+      .sync-meta { max-width: 43%; }
+      .day-summary { padding-inline: 10px; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
     }
   </style>
 </head>
 <body>
   <div class="page-shell">
     <header class="topbar">
-      <a class="brand" href="#top" aria-label="KREJUV FEC daily log home">
-        <span class="brand-mark">KF</span><span class="brand-text">KREJUV FEC</span>
-      </a>
-      <nav class="topnav" aria-label="Main navigation">
-        <a href="#daily-log">Daily log</a>
-      </nav>
-      <span class="topbar-spacer"></span>
+      <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>KREJUV FEC</span></div>
+      <div class="topbar-note">Field schedule · Live sheet data</div>
     </header>
 
-    <main id="top">
+    <main>
       <section class="hero" aria-labelledby="page-title">
-        <div class="eyebrow"><span class="eyebrow-dot"></span> Project operations log</div>
-        <h1 id="page-title">KREJUV FEC<span>BLOWDOWN TIE-IN</span></h1>
-        <p class="hero-copy">A clear, day-by-day record of field activities, progress and follow-up actions.</p>
-        <div class="hero-actions">
-          <a class="button-primary" href="#daily-log">View daily log <span aria-hidden="true">↓</span></a>
-        </div>
-        <div class="summary-strip" aria-label="Daily log summary">
-          <div class="summary-card"><span class="summary-label">Log days</span><strong class="summary-value" id="dayCount">—</strong></div>
-          <div class="summary-card"><span class="summary-label">Latest day</span><strong class="summary-value small" id="latestDay">—</strong></div>
-          <div class="summary-card"><span class="summary-label">Log entries</span><strong class="summary-value" id="entryCount">—</strong></div>
+        <p class="eyebrow">Commissioning work plan</p>
+        <h1 id="page-title"><span>Blowdown</span><span>Tie-In</span></h1>
+        <div class="hero-bottom">
+          <p class="hero-description">Three-day activity schedule for the KREJUV FEC blowdown tie-in. The daily plan, date and work location are read directly from the shared schedule sheet.</p>
+          <div class="day-count">3 days <span aria-hidden="true">/</span> live schedule</div>
         </div>
       </section>
 
-      <section class="workspace" id="daily-log" aria-label="Daily activity log">
-        <div class="workspace-top">
-          <div class="workspace-title"><strong>Daily activity</strong><span id="lastUpdated">Loading daily tabs…</span></div>
-          <div class="toolbar-spacer"></div>
-          <div class="load-status" id="statusPill" aria-live="polite"><span class="status-light"></span><span id="statusText">Loading</span></div>
-          <button class="toolbar-button" id="refreshButton" type="button" title="Refresh daily activity">↻ Refresh</button>
-          <div class="search-wrap">
-            <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            <input class="search-input" id="searchInput" type="search" placeholder="Search dates and activities…" aria-label="Search daily log">
+      <section class="schedule-section" aria-labelledby="schedule-title">
+        <div class="section-heading">
+          <h2 class="section-label" id="schedule-title">Daily activities</h2>
+          <div class="section-controls" aria-label="Schedule controls">
+            <button class="text-button" id="expand-all" type="button">Expand all</button>
+            <button class="text-button" id="collapse-all" type="button">Collapse all</button>
+            <button class="text-button" id="refresh" type="button">Refresh</button>
           </div>
-          <button class="toolbar-button" id="expandButton" type="button">Collapse all</button>
         </div>
-        <div class="log-list" id="logList">
-          <div class="empty-state" id="emptyState">
-            <div class="empty-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 3v4M16 3v4M4 9h16M8 13h3M8 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+
+        <div class="sync-strip" role="status" aria-live="polite">
+          <div class="sync-label"><span class="sync-dot" id="sync-dot" aria-hidden="true"></span><span id="sync-label">Connecting to schedule…</span></div>
+          <div class="sync-meta" id="sync-meta">Updates automatically every 60 seconds</div>
+        </div>
+
+        <div class="day-list" id="day-list">
+          <details class="day-card" data-day="1" open>
+            <summary class="day-summary">
+              <div class="day-index-wrap"><span class="day-index">Day 1</span><span class="day-small-label">Schedule</span></div>
+              <div class="summary-field" data-role="date"><span class="field-label">Date</span><span class="field-value" data-date>Loading…</span></div>
+              <div class="summary-field" data-role="location"><span class="field-label">Location</span><span class="field-value" data-location>Loading…</span></div>
+              <div class="day-count-badge"><span class="count-number" data-count>—</span><br>activities</div>
+              <span class="chevron" aria-hidden="true">⌄</span>
+            </summary>
+            <div class="day-content">
+              <div class="table-wrap"><table><thead><tr><th scope="col">Time</th><th scope="col">Activities</th></tr></thead><tbody data-rows><tr class="empty-row"><td colspan="2">Loading activities…</td></tr></tbody></table></div>
+              <div class="stale-note" data-stale>Showing previously loaded schedule data. A refresh could not reach the sheet.</div>
             </div>
-            <h2 id="emptyTitle">Loading the daily log</h2>
-            <p id="emptyCopy">Daily activity entries will appear here, grouped by date.</p>
-          </div>
-          <div id="daysContainer"></div>
-          <div class="empty-state hidden" id="noResults">
-            <h2>No matching entries</h2>
-            <p>Try another date or search term.</p>
-          </div>
+          </details>
+
+          <details class="day-card" data-day="2">
+            <summary class="day-summary">
+              <div class="day-index-wrap"><span class="day-index">Day 2</span><span class="day-small-label">Schedule</span></div>
+              <div class="summary-field" data-role="date"><span class="field-label">Date</span><span class="field-value" data-date>Loading…</span></div>
+              <div class="summary-field" data-role="location"><span class="field-label">Location</span><span class="field-value" data-location>Loading…</span></div>
+              <div class="day-count-badge"><span class="count-number" data-count>—</span><br>activities</div>
+              <span class="chevron" aria-hidden="true">⌄</span>
+            </summary>
+            <div class="day-content">
+              <div class="table-wrap"><table><thead><tr><th scope="col">Time</th><th scope="col">Activities</th></tr></thead><tbody data-rows><tr class="empty-row"><td colspan="2">Loading activities…</td></tr></tbody></table></div>
+              <div class="stale-note" data-stale>Showing previously loaded schedule data. A refresh could not reach the sheet.</div>
+            </div>
+          </details>
+
+          <details class="day-card" data-day="3">
+            <summary class="day-summary">
+              <div class="day-index-wrap"><span class="day-index">Day 3</span><span class="day-small-label">Schedule</span></div>
+              <div class="summary-field" data-role="date"><span class="field-label">Date</span><span class="field-value" data-date>Loading…</span></div>
+              <div class="summary-field" data-role="location"><span class="field-label">Location</span><span class="field-value" data-location>Loading…</span></div>
+              <div class="day-count-badge"><span class="count-number" data-count>—</span><br>activities</div>
+              <span class="chevron" aria-hidden="true">⌄</span>
+            </summary>
+            <div class="day-content">
+              <div class="table-wrap"><table><thead><tr><th scope="col">Time</th><th scope="col">Activities</th></tr></thead><tbody data-rows><tr class="empty-row"><td colspan="2">Loading activities…</td></tr></tbody></table></div>
+              <div class="stale-note" data-stale>Showing previously loaded schedule data. A refresh could not reach the sheet.</div>
+            </div>
+          </details>
         </div>
-        <footer class="footer">
-          <span>Daily log view · KREJUV FEC Blowdown Tie-In</span>
-          <span>Loads automatically · refresh for updates</span>
-        </footer>
       </section>
     </main>
-  </div>
 
+    <footer>
+      <span>Schedule data is read-only here and remains managed in Google Sheets.</span>
+      <span><a href="https://docs.google.com/spreadsheets/d/1XAyrsD9GLGaY3ZnaiWnND25iF3DsvKR_rhKFXkcffmQ/edit" target="_blank" rel="noopener noreferrer">Open source schedule ↗</a></span>
+    </footer>
+  </div>
 
   <script>
     "use strict";
 
-    // Add the deployed Apps Script web app URL ending in /exec here.
-    // The page will fetch all non-empty daily tabs automatically for every visitor.
-    const DATA_ENDPOINT = "";
-    const state = { sheets: [], expanded: true, error: "", lastUpdated: "" };
-    const $ = (selector) => document.querySelector(selector);
-    const daysContainer = $("#daysContainer");
-    const emptyState = $("#emptyState");
-    const emptyTitle = $("#emptyTitle");
-    const emptyCopy = $("#emptyCopy");
-    const noResults = $("#noResults");
-    const statusPill = $("#statusPill");
+    const SHEET_ID = "1XAyrsD9GLGaY3ZnaiWnND25iF3DsvKR_rhKFXkcffmQ";
+    const REFRESH_INTERVAL_MS = 60_000;
+    const REQUEST_TIMEOUT_MS = 15_000;
+    const days = [
+      { number: 1, tab: "Day 1", element: document.querySelector('[data-day="1"]'), cache: null },
+      { number: 2, tab: "Day 2", element: document.querySelector('[data-day="2"]'), cache: null },
+      { number: 3, tab: "Day 3", element: document.querySelector('[data-day="3"]'), cache: null }
+    ];
+    const refreshButton = document.getElementById("refresh");
+    const syncLabel = document.getElementById("sync-label");
+    const syncMeta = document.getElementById("sync-meta");
+    const syncDot = document.getElementById("sync-dot");
+    let isRefreshing = false;
 
-    function escapeHTML(value) {
-      return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
-    }
-
-    function cleanRows(rows) {
-      if (!Array.isArray(rows)) return [];
-      return rows
-        .filter((row) => Array.isArray(row) && row.some((cell) => String(cell ?? "").trim() !== ""))
-        .map((row) => row.map((cell) => String(cell ?? "").trim()));
-    }
-
-    function parseTabDate(label) {
-      const text = String(label || "").trim();
-      let match = text.match(/^(\d{4})[./-](\d{1,2})[./-](\d{1,2})/);
-      if (match) return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
-      match = text.match(/^(\d{1,2})[./-](\d{1,2})[./-](\d{2,4})/);
-      if (match) {
-        let year = Number(match[3]);
-        if (year < 100) year += year < 70 ? 2000 : 1900;
-        return new Date(year, Number(match[2]) - 1, Number(match[1]));
+    function cellText(cell) {
+      if (cell == null) return "";
+      const value = typeof cell === "object" ? (cell.f ?? cell.v ?? "") : cell;
+      if (value == null) return "";
+      const text = String(value).trim();
+      const dateMatch = text.match(/^Date\((\d{4}),(\d{1,2}),(\d{1,2})\)$/);
+      if (dateMatch) {
+        const date = new Date(Number(dateMatch[1]), Number(dateMatch[2]), Number(dateMatch[3]));
+        return new Intl.DateTimeFormat("en-GB", { day: "2-digit", month: "short", year: "numeric" }).format(date);
       }
-      const parsed = Date.parse(text);
-      return Number.isNaN(parsed) ? null : new Date(parsed);
+      return text;
     }
 
-    function formatDate(label) {
-      const date = parseTabDate(label);
-      if (!date || Number.isNaN(date.getTime())) return label || "Untitled day";
-      return new Intl.DateTimeFormat("en-MY", { day: "numeric", month: "long", year: "numeric" }).format(date);
+    function gvizRows(table) {
+      return (table?.rows || []).map(row => (row?.c || []).map(cellText));
     }
 
-    function sortSheets(sheets) {
-      return [...sheets].sort((a, b) => {
-        const dateA = parseTabDate(a.name);
-        const dateB = parseTabDate(b.name);
-        if (dateA && dateB) return dateB - dateA;
-        if (dateA) return -1;
-        if (dateB) return 1;
-        return (Number(b.index) || 0) - (Number(a.index) || 0);
+    function isDateText(value) {
+      return /^\d{1,2}[/.\-]\d{1,2}[/.\-]\d{2,4}$/.test(value) || /^\d{1,2} [A-Za-z]{3} \d{4}$/.test(value) || /^Date\(/.test(value);
+    }
+
+    function parseSchedule(table) {
+      const rows = gvizRows(table);
+      const headerIndex = rows.findIndex(row => row.some(value => /^(activities|activity)$/i.test(value)));
+      const metadataRows = rows.slice(0, headerIndex >= 0 ? headerIndex : Math.min(3, rows.length));
+      const metadata = metadataRows.flat();
+      const date = metadata.find(isDateText) || "Date not listed";
+      const location = metadata.find(value => value && value !== date && !/^(activities|activity|time)$/i.test(value) && !/^Date\(/.test(value)) || "Location not listed";
+      const header = headerIndex >= 0 ? rows[headerIndex] : [];
+      let activityIndex = header.findIndex(value => /^(activities|activity)$/i.test(value));
+      if (activityIndex < 0) activityIndex = 1;
+      let timeIndex = header.findIndex(value => /^time$/i.test(value));
+      if (timeIndex < 0) timeIndex = activityIndex === 0 ? 1 : 0;
+      const startIndex = headerIndex >= 0 ? headerIndex + 1 : 0;
+      const activities = rows.slice(startIndex).map(row => ({
+        time: row[timeIndex] || "",
+        activity: row[activityIndex] || ""
+      })).filter(item => item.time || item.activity).filter(item => !/^(activities|activity|time)$/i.test(item.activity));
+      return { date, location, activities };
+    }
+
+    function requestTab(tab) {
+      return new Promise((resolve, reject) => {
+        const callbackName = "__krejuvSheet_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2);
+        const script = document.createElement("script");
+        let settled = false;
+        const cleanUp = () => {
+          clearTimeout(timeout);
+          script.remove();
+          try { delete window[callbackName]; } catch (_) { window[callbackName] = undefined; }
+        };
+        const finish = (handler, value) => {
+          if (settled) return;
+          settled = true;
+          cleanUp();
+          handler(value);
+        };
+        const timeout = setTimeout(() => finish(reject, new Error("The sheet request timed out.")), REQUEST_TIMEOUT_MS);
+        window[callbackName] = response => {
+          if (!response || response.status !== "ok" || !response.table) {
+            finish(reject, new Error(response?.errors?.[0]?.detailed_message || "The sheet did not return schedule data."));
+            return;
+          }
+          finish(resolve, response.table);
+        };
+        const params = new URLSearchParams({
+          tqx: "out:json;responseHandler:" + callbackName,
+          sheet: tab
+        });
+        script.async = true;
+        script.src = "https://docs.google.com/spreadsheets/d/" + encodeURIComponent(SHEET_ID) + "/gviz/tq?" + params.toString();
+        script.onerror = () => finish(reject, new Error("Could not load the Google Sheet."));
+        document.head.appendChild(script);
       });
     }
 
-    function isHeaderRow(row) {
-      const text = row.join(" ").toLowerCase();
-      return /\b(time|activity|activities|description|task|status|remarks?|work|location|personnel|progress|action|item|start|finish|duration|update|log)\b/.test(text);
+    function setCellText(element, value) {
+      element.textContent = value;
+      element.title = value;
     }
 
-    function renderRows(rows) {
-      const data = cleanRows(rows);
-      if (!data.length) return '<p class="log-note">No entries in this day.</p>';
-      const columns = Math.max(...data.map((row) => row.length));
-      if (columns <= 1) {
-        return '<div class="log-notes">' + data.map((row) => '<div class="log-note">' + escapeHTML(row[0]) + '</div>').join("") + '</div>';
+    function renderSchedule(day, schedule) {
+      const card = day.element;
+      setCellText(card.querySelector("[data-date]"), schedule.date);
+      setCellText(card.querySelector("[data-location]"), schedule.location);
+      setCellText(card.querySelector("[data-count]"), String(schedule.activities.length).padStart(2, "0"));
+      const body = card.querySelector("[data-rows]");
+      body.replaceChildren();
+      if (!schedule.activities.length) {
+        const row = document.createElement("tr");
+        row.className = "empty-row";
+        const cell = document.createElement("td");
+        cell.colSpan = 2;
+        cell.textContent = "No scheduled activities listed on this tab.";
+        row.append(cell);
+        body.append(row);
+      } else {
+        schedule.activities.forEach(item => {
+          const row = document.createElement("tr");
+          const time = document.createElement("td");
+          const activity = document.createElement("td");
+          activity.className = "activity-cell";
+          time.textContent = item.time || "—";
+          activity.textContent = item.activity || "—";
+          row.append(time, activity);
+          body.append(row);
+        });
       }
-      const hasHeader = data.length > 1 && isHeaderRow(data[0]);
-      const headers = hasHeader ? data[0] : Array.from({ length: columns }, (_, index) => `Field ${index + 1}`);
-      const body = hasHeader ? data.slice(1) : data;
-      const headerHTML = '<thead><tr>' + Array.from({ length: columns }, (_, index) => '<th>' + escapeHTML(headers[index] || `Field ${index + 1}`) + '</th>').join("") + '</tr></thead>';
-      const rowsHTML = body.map((row) => '<tr>' + Array.from({ length: columns }, (_, index) => '<td>' + escapeHTML(row[index] || "") + '</td>').join("") + '</tr>').join("");
-      return '<div class="table-scroll"><table class="log-table">' + headerHTML + '<tbody>' + rowsHTML + '</tbody></table></div>';
+      card.querySelector("[data-stale]").classList.remove("is-visible");
+      day.cache = schedule;
     }
 
-    function daySearchText(sheet) {
-      return [sheet.name, ...cleanRows(sheet.rows).flat()].join(" ").toLowerCase();
-    }
-
-    function setStatus(message, type = "") {
-      $("#statusText").textContent = message;
-      statusPill.classList.toggle("loaded", type === "loaded");
-      statusPill.classList.toggle("error", type === "error");
-    }
-
-    function render() {
-      const sheets = sortSheets(state.sheets);
-      const search = $("#searchInput").value.trim().toLowerCase();
-      const visible = sheets.filter((sheet) => !search || daySearchText(sheet).includes(search));
-      const totalEntries = sheets.reduce((sum, sheet) => sum + cleanRows(sheet.rows).length, 0);
-      $("#dayCount").textContent = String(sheets.length);
-      $("#latestDay").textContent = sheets.length ? formatDate(sheets[0].name) : "—";
-      $("#entryCount").textContent = String(totalEntries);
-      $("#lastUpdated").textContent = state.lastUpdated
-        ? `Updated ${new Intl.DateTimeFormat("en-MY", { dateStyle: "medium", timeStyle: "short" }).format(new Date(state.lastUpdated))}`
-        : state.error ? "Daily log unavailable" : "Loading daily tabs…";
-      $("#expandButton").textContent = state.expanded ? "Collapse all" : "Expand all";
-
-      daysContainer.innerHTML = visible.map((sheet) => {
-        const rows = cleanRows(sheet.rows);
-        const date = parseTabDate(sheet.name);
-        const dateTile = date ? String(date.getDate()).padStart(2, "0") : "LOG";
-        return `<details class="day-card" data-day="${escapeHTML(sheet.name)}" ${state.expanded ? "open" : ""}>
-          <summary class="day-summary">
-            <span class="calendar-icon">${escapeHTML(dateTile)}</span>
-            <span class="day-heading"><strong>${escapeHTML(formatDate(sheet.name))}</strong><span>${rows.length} ${rows.length === 1 ? "log entry" : "log entries"}</span></span>
-            <span class="day-badge">${rows.length} ${rows.length === 1 ? "row" : "rows"}</span>
-            <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </summary>
-          <div class="day-content">${renderRows(rows)}</div>
-        </details>`;
-      }).join("");
-
-      const hasSheets = sheets.length > 0;
-      emptyState.classList.toggle("hidden", hasSheets);
-      noResults.classList.toggle("hidden", !hasSheets || visible.length > 0);
-      if (!hasSheets) {
-        emptyTitle.textContent = state.error ? "Daily log unavailable" : "Loading the daily log";
-        emptyCopy.textContent = state.error
-          ? "Daily entries are temporarily unavailable. Try refreshing the page in a moment."
-          : "Daily activity entries will appear here, grouped by date.";
-      }
-    }
-
-    function loadData() {
-      if (!DATA_ENDPOINT) {
-        state.error = "Daily data feed is not configured.";
-        state.sheets = [];
-        setStatus("Unavailable", "error");
-        render();
+    function showDayError(day, error) {
+      const card = day.element;
+      if (day.cache) {
+        card.querySelector("[data-stale]").classList.add("is-visible");
         return;
       }
-      state.error = "";
-      state.sheets = [];
-      setStatus("Loading", "");
-      render();
-      const callbackName = "krejuvFecLogCallback";
-      const timeout = setTimeout(() => {
-        delete window[callbackName];
-        state.error = "The daily data feed did not respond.";
-        setStatus("Unavailable", "error");
-        render();
-      }, 15000);
-      window[callbackName] = (payload) => {
-        clearTimeout(timeout);
-        delete window[callbackName];
-        if (!payload || !Array.isArray(payload.sheets)) {
-          state.error = "The daily data feed returned an invalid response.";
-          setStatus("Unavailable", "error");
-          render();
-          return;
-        }
-        state.sheets = payload.sheets.map((sheet, index) => ({
-          name: String(sheet.name || `Day ${index + 1}`),
-          index: sheet.index ?? index,
-          rows: cleanRows(sheet.rows)
-        })).filter((sheet) => sheet.rows.length > 0);
-        state.lastUpdated = payload.updatedAt || new Date().toISOString();
-        state.error = "";
-        state.expanded = true;
-        setStatus("Up to date", "loaded");
-        render();
-      };
-      try {
-        const url = new URL(DATA_ENDPOINT);
-        url.searchParams.set("callback", callbackName);
-        url.searchParams.set("_", String(Date.now()));
-        const script = document.createElement("script");
-        script.src = url.href;
-        script.async = true;
-        script.onerror = () => {
-          clearTimeout(timeout);
-          delete window[callbackName];
-          state.error = "The daily data feed could not be reached.";
-          setStatus("Unavailable", "error");
-          render();
-        };
-        document.head.appendChild(script);
-        script.onload = () => script.remove();
-      } catch (error) {
-        clearTimeout(timeout);
-        state.error = "The daily data feed URL is invalid.";
-        setStatus("Unavailable", "error");
-        render();
-      }
+      setCellText(card.querySelector("[data-date]"), "Unavailable");
+      setCellText(card.querySelector("[data-location]"), "Unavailable");
+      setCellText(card.querySelector("[data-count]"), "—");
+      const body = card.querySelector("[data-rows]");
+      body.replaceChildren();
+      const row = document.createElement("tr");
+      row.className = "empty-row";
+      const cell = document.createElement("td");
+      cell.colSpan = 2;
+      cell.textContent = "Could not load this day from Google Sheets. Check that the tab is named “Day " + day.number + "” and is viewable by link.";
+      row.append(cell);
+      body.append(row);
+      console.warn("Schedule load failed for " + day.tab + ":", error?.message || error);
     }
 
-    $("#refreshButton").addEventListener("click", loadData);
-    $("#searchInput").addEventListener("input", render);
-    $("#expandButton").addEventListener("click", () => {
-      state.expanded = !state.expanded;
-      render();
-    });
+    function timeNow() {
+      return new Intl.DateTimeFormat("en-MY", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Asia/Kuala_Lumpur" }).format(new Date());
+    }
 
-    render();
-    loadData();
+    async function refreshSchedule(manual = false) {
+      if (isRefreshing) return;
+      isRefreshing = true;
+      refreshButton.disabled = true;
+      syncDot.classList.remove("is-error");
+      syncLabel.textContent = "Syncing schedule…";
+      if (manual) syncMeta.textContent = "Checking all three day tabs";
+      const outcomes = await Promise.all(days.map(async day => {
+        try {
+          const table = await requestTab(day.tab);
+          renderSchedule(day, parseSchedule(table));
+          return true;
+        } catch (error) {
+          showDayError(day, error);
+          return false;
+        }
+      }));
+      const failures = outcomes.filter(success => !success).length;
+      const syncedAt = timeNow();
+      if (failures === 0) {
+        syncLabel.textContent = "Schedule is up to date";
+        syncMeta.textContent = "Last checked " + syncedAt + " · refreshes every minute";
+        syncDot.classList.remove("is-error");
+      } else {
+        syncLabel.textContent = failures === days.length ? "Schedule could not be loaded" : "Some day tabs could not be refreshed";
+        syncMeta.textContent = "Last check " + syncedAt + " · retry with Refresh";
+        syncDot.classList.add("is-error");
+      }
+      refreshButton.disabled = false;
+      isRefreshing = false;
+    }
+
+    document.getElementById("expand-all").addEventListener("click", () => days.forEach(day => { day.element.open = true; }));
+    document.getElementById("collapse-all").addEventListener("click", () => days.forEach(day => { day.element.open = false; }));
+    refreshButton.addEventListener("click", () => refreshSchedule(true));
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") refreshSchedule();
+    });
+    window.setInterval(() => {
+      if (document.visibilityState === "visible") refreshSchedule();
+    }, REFRESH_INTERVAL_MS);
+
+    refreshSchedule();
   </script>
 </body>
 </html>
