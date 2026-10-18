@@ -3,21 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f4f4f1">
-  <meta name="description" content="Live three-day KREJUV FEC blowdown tie-in schedule.">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="KREJUV FEC blowdown tie-in activity schedule.">
   <title>KREJUV FEC — Blowdown Tie-In</title>
   <style>
     :root {
       color-scheme: light;
-      --ink: #101010;
-      --paper: #f4f4f1;
-      --white: #fff;
-      --line: #171717;
-      --muted: #6d6d68;
-      --soft-line: #d7d7d2;
-      --accent: #b8f34a;
-      --danger: #b12828;
-      --page-width: 1120px;
+      --ink: #111;
+      --paper: #fff;
+      --muted: #666;
+      --soft-line: #c9c9c9;
+      --danger: #a32121;
+      --page-width: 1040px;
     }
 
     * { box-sizing: border-box; }
@@ -29,284 +26,262 @@
       font-family: Arial, Helvetica, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
-    button, a, summary { -webkit-tap-highlight-color: transparent; }
+    button, summary { -webkit-tap-highlight-color: transparent; }
     button { font: inherit; }
-    a { color: inherit; }
 
     .page-shell {
-      width: min(var(--page-width), calc(100% - 48px));
-      margin: 0 auto;
+      width: min(var(--page-width), calc(100% - 40px));
+      margin: 24px auto;
+      overflow: hidden;
+      border: 3px solid var(--ink);
+      border-radius: 18px;
+      background: #fff;
     }
 
     .topbar {
-      min-height: 58px;
+      min-height: 46px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid var(--line);
-      gap: 20px;
-      font-size: 11px;
+      padding: 0 17px;
+      border-bottom: 1px solid var(--ink);
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: .1em;
       text-transform: uppercase;
     }
-    .brand { display: inline-flex; align-items: center; gap: 10px; }
+    .brand { display: inline-flex; align-items: center; gap: 8px; }
     .brand-mark {
-      width: 17px;
-      height: 17px;
+      width: 14px;
+      height: 14px;
       display: inline-block;
-      border: 2px solid var(--ink);
-      border-radius: 50%;
       position: relative;
+      border: 1.5px solid var(--ink);
+      border-radius: 50%;
     }
     .brand-mark::after {
       content: "";
       position: absolute;
+      top: 3px;
+      left: 3px;
       width: 5px;
       height: 5px;
-      top: 4px;
-      left: 4px;
       border-radius: 50%;
       background: var(--ink);
     }
-    .topbar-note { color: var(--muted); font-weight: 600; letter-spacing: .07em; }
 
     .hero {
-      padding: clamp(44px, 8vw, 96px) 0 34px;
-      border-bottom: 2px solid var(--line);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 20px;
+      padding: 22px 17px 19px;
+      border-bottom: 1px solid var(--ink);
     }
-    .eyebrow {
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 4.2vw, 46px);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    h1 span { display: inline; }
+    .hero-bottom { display: flex; align-items: center; justify-content: flex-end; }
+    .day-count {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin: 0 0 20px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-    .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--ink); }
-    h1 {
-      max-width: 920px;
-      margin: 0;
-      font-size: clamp(46px, 8vw, 104px);
-      line-height: .86;
-      letter-spacing: -.075em;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-    h1 span { display: block; }
-    h1 span + span { margin-top: 10px; }
-    .hero-bottom {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 24px;
-      margin-top: 34px;
-    }
-    .hero-description {
-      max-width: 480px;
-      margin: 0;
-      color: #3d3d3a;
-      font-size: 14px;
-      line-height: 1.55;
-    }
-    .day-count {
-      flex: 0 0 auto;
-      border: 1.5px solid var(--line);
-      padding: 10px 13px 9px;
-      font-size: 10px;
+      gap: 9px;
+      padding-left: 15px;
+      border-left: 1px solid var(--soft-line);
       line-height: 1;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
       white-space: nowrap;
+      text-transform: uppercase;
     }
+    #available-day-count { font-size: 34px; font-weight: 700; letter-spacing: -.07em; }
+    #available-day-label { max-width: 66px; font-size: 8px; font-weight: 700; line-height: 1.25; letter-spacing: .08em; }
 
-    .schedule-section { padding: 26px 0 68px; }
+    .schedule-section { padding: 0 0 13px; }
     .section-heading {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 18px;
-      margin-bottom: 14px;
+      min-height: 43px;
+      padding: 0 17px;
+      border-bottom: 1px solid var(--ink);
     }
     .section-label {
       margin: 0;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: .14em;
+      letter-spacing: .11em;
       text-transform: uppercase;
     }
-    .section-controls { display: flex; align-items: center; gap: 8px; }
+    .section-controls { display: flex; align-items: center; gap: 15px; }
     .text-button {
-      min-height: 36px;
-      border: 1px solid var(--line);
+      min-height: 30px;
+      border: 0;
+      border-bottom: 1px solid transparent;
       border-radius: 0;
       background: transparent;
       color: var(--ink);
-      padding: 0 12px;
+      padding: 0;
       cursor: pointer;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 700;
-      letter-spacing: .08em;
+      letter-spacing: .07em;
       text-transform: uppercase;
     }
-    .text-button:hover { background: var(--ink); color: var(--white); }
-    .text-button:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid #507b00; outline-offset: 3px; }
+    .text-button:hover { border-bottom-color: var(--ink); }
+    .text-button:focus-visible, summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
     .text-button[disabled] { cursor: wait; opacity: .55; }
 
     .sync-strip {
-      min-height: 43px;
+      min-height: 34px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 15px;
-      margin-bottom: 18px;
-      padding: 0 13px;
-      border: 1px solid var(--line);
-      background: var(--white);
-      font-size: 11px;
+      gap: 14px;
+      padding: 0 17px;
+      border-bottom: 1px solid var(--soft-line);
+      font-size: 9px;
     }
-    .sync-label { display: flex; align-items: center; gap: 9px; font-weight: 700; }
-    .sync-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); border: 1px solid var(--line); }
-    .sync-dot.is-error { background: #f29c9c; }
+    .sync-label { display: flex; align-items: center; gap: 7px; font-weight: 700; }
+    .sync-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
+    .sync-dot.is-error { background: var(--danger); }
     .sync-meta { color: var(--muted); text-align: right; }
 
-    .day-list { display: grid; gap: 13px; }
-    .day-card {
-      border: 2px solid var(--line);
-      background: var(--white);
-    }
-    .day-card[open] { box-shadow: 5px 5px 0 var(--ink); }
+    .day-list { display: grid; }
+    .day-card { border-bottom: 1px solid var(--ink); background: #fff; }
+    .day-card:last-child { border-bottom: 0; }
     .day-summary {
-      min-height: 88px;
+      min-height: 75px;
       display: grid;
-      grid-template-columns: minmax(150px, 1.05fr) minmax(120px, .85fr) minmax(170px, 1.2fr) minmax(56px, auto) 26px;
+      grid-template-columns: minmax(130px, 1.05fr) minmax(110px, .85fr) minmax(150px, 1.2fr) 74px 20px;
       align-items: center;
-      gap: 20px;
-      padding: 14px 18px;
+      gap: 16px;
+      padding: 10px 17px;
       cursor: pointer;
       list-style: none;
     }
     .day-summary::-webkit-details-marker { display: none; }
-    .day-index-wrap { display: flex; align-items: baseline; gap: 12px; }
+    .day-index-wrap { display: flex; align-items: baseline; }
     .day-index {
-      font-size: clamp(25px, 4vw, 36px);
-      line-height: .95;
+      font-size: clamp(22px, 3vw, 29px);
+      line-height: 1;
       letter-spacing: -.06em;
-      font-weight: 800;
+      font-weight: 700;
       text-transform: uppercase;
     }
-    .day-small-label { color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
-    .summary-field { min-width: 0; }
+    .summary-field {
+      min-width: 0;
+      min-height: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 14px;
+      border-left: 1px solid var(--soft-line);
+    }
     .field-label {
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
       color: var(--muted);
-      font-size: 9px;
+      font-size: 8px;
       font-weight: 700;
-      letter-spacing: .12em;
+      letter-spacing: .11em;
       text-transform: uppercase;
     }
-    .field-value { display: block; overflow: hidden; font-size: 13px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+    .field-value { display: block; overflow: hidden; font-size: 12px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
     .day-count-badge {
-      min-width: 56px;
+      min-width: 60px;
+      padding-left: 12px;
+      border-left: 1px solid var(--soft-line);
       text-align: right;
-      font-size: 10px;
+      font-size: 8px;
       font-weight: 700;
       letter-spacing: .06em;
       text-transform: uppercase;
     }
-    .day-count-badge .count-number { font-size: 21px; letter-spacing: -.05em; }
+    .day-count-badge .count-number { font-size: 19px; letter-spacing: -.05em; }
     .chevron {
-      width: 26px;
-      height: 26px;
       display: grid;
+      width: 20px;
+      height: 20px;
       place-items: center;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1;
       transition: transform .18s ease;
     }
     .day-card[open] .chevron { transform: rotate(180deg); }
-    .day-content { border-top: 1.5px solid var(--line); }
+    .day-content { border-top: 1px solid var(--ink); }
     .table-wrap { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-    thead { background: var(--ink); color: var(--white); }
+    thead { background: #fff; color: var(--ink); }
     th {
-      padding: 11px 17px;
+      padding: 10px 17px;
+      border-bottom: 1px solid var(--ink);
       text-align: left;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 700;
-      letter-spacing: .12em;
+      letter-spacing: .1em;
       text-transform: uppercase;
     }
-    th:first-child, td:first-child { width: 150px; border-right: 1px solid var(--line); }
-    td { padding: 13px 17px; border-bottom: 1px solid var(--soft-line); vertical-align: top; font-size: 13px; line-height: 1.45; }
+    th:first-child, td:first-child { width: 145px; border-right: 1px solid var(--soft-line); }
+    td { padding: 12px 17px; border-bottom: 1px solid var(--soft-line); vertical-align: top; font-size: 12px; line-height: 1.45; }
     tbody tr:last-child td { border-bottom: 0; }
     td:first-child { font-variant-numeric: tabular-nums; font-weight: 700; white-space: nowrap; }
     .activity-cell { white-space: pre-wrap; }
-    .empty-row td { padding: 20px 17px; color: var(--muted); font-size: 12px; }
-    .stale-note { display: none; padding: 10px 17px; border-top: 1px solid var(--soft-line); color: var(--danger); font-size: 11px; }
+    .empty-row td { padding: 18px 17px; color: var(--muted); font-size: 11px; }
+    .stale-note { display: none; padding: 9px 17px; border-top: 1px solid var(--soft-line); color: var(--danger); font-size: 10px; }
     .stale-note.is-visible { display: block; }
-    .error-card { padding: 18px; color: var(--danger); font-size: 12px; line-height: 1.5; }
-    .error-card button { margin-top: 10px; border: 0; padding: 0; background: none; color: var(--ink); text-decoration: underline; font-weight: 700; cursor: pointer; }
-
-    footer {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 17px 0 26px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 10px;
-      line-height: 1.5;
-    }
-    footer a { color: var(--ink); font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .error-card { padding: 16px; color: var(--danger); font-size: 11px; line-height: 1.5; }
+    .error-card button { margin-top: 8px; border: 0; padding: 0; background: none; color: var(--ink); text-decoration: underline; font-weight: 700; cursor: pointer; }
 
     @media (max-width: 720px) {
-      .page-shell { width: min(100% - 28px, var(--page-width)); }
-      .topbar { min-height: 50px; font-size: 9px; }
-      .topbar-note { max-width: 45%; text-align: right; line-height: 1.35; }
-      .hero { padding: 55px 0 27px; }
-      h1 { font-size: clamp(43px, 13vw, 76px); }
-      .hero-bottom { align-items: flex-start; flex-direction: column; gap: 16px; margin-top: 24px; }
-      .hero-description { font-size: 13px; }
-      .section-heading { align-items: flex-start; }
-      .section-controls { gap: 6px; }
-      .text-button { min-height: 34px; padding: 0 8px; font-size: 9px; }
-      .sync-strip { min-height: 42px; padding: 8px 10px; font-size: 10px; }
-      .sync-meta { max-width: 46%; }
-      .day-list { gap: 11px; }
+      .page-shell { width: calc(100% - 24px); margin: 12px auto; border-width: 2px; border-radius: 15px; }
+      .topbar { min-height: 40px; padding: 0 12px; font-size: 9px; }
+      .hero { gap: 10px; padding: 17px 12px 15px; }
+      h1 { font-size: clamp(23px, 6vw, 31px); line-height: 1; }
+      .day-count { gap: 7px; padding-left: 10px; }
+      #available-day-count { font-size: 29px; }
+      #available-day-label { max-width: 56px; font-size: 7px; }
+      .section-heading { align-items: flex-start; flex-direction: column; gap: 2px; padding: 8px 12px 7px; }
+      .section-controls { width: 100%; gap: 13px; }
+      .text-button { min-height: 25px; font-size: 8px; }
+      .sync-strip { min-height: 34px; gap: 8px; padding: 0 12px; font-size: 8px; }
+      .sync-meta { max-width: 48%; }
       .day-summary {
-        min-height: 81px;
-        grid-template-columns: minmax(0, 1fr) auto auto;
-        gap: 10px;
-        padding: 13px 12px;
+        min-height: 88px;
+        grid-template-columns: minmax(0, 1fr) auto 19px;
+        grid-template-rows: auto auto auto;
+        column-gap: 9px;
+        row-gap: 1px;
+        padding: 10px 12px;
       }
-      .day-index-wrap { grid-column: 1; grid-row: 1; gap: 9px; }
-      .summary-field[data-role="date"] { grid-column: 1; grid-row: 2; margin-top: -1px; }
-      .summary-field[data-role="location"] { display: none; }
-      .day-count-badge { grid-column: 2; grid-row: 1 / span 2; min-width: 42px; }
-      .chevron { grid-column: 3; grid-row: 1 / span 2; }
-      .day-index { font-size: 26px; }
-      .day-small-label { font-size: 8px; }
-      .field-label { margin-bottom: 3px; font-size: 8px; }
-      .field-value { font-size: 12px; }
-      th:first-child, td:first-child { width: 86px; }
-      th { padding: 10px 11px; font-size: 9px; }
-      td { padding: 12px 11px; font-size: 12px; }
-      footer { flex-direction: column; gap: 8px; }
+      .day-index-wrap { grid-column: 1; grid-row: 1; }
+      .summary-field { min-height: 0; flex-direction: row; justify-content: flex-start; align-items: baseline; gap: 7px; padding-left: 0; border-left: 0; }
+      .summary-field[data-role="date"] { grid-column: 1; grid-row: 2; }
+      .summary-field[data-role="location"] { grid-column: 1; grid-row: 3; }
+      .field-label { flex: 0 0 auto; margin: 0; font-size: 7px; }
+      .field-value { min-width: 0; font-size: 10px; }
+      .day-count-badge { grid-column: 2; grid-row: 1 / span 3; min-width: 52px; padding-left: 9px; font-size: 7px; }
+      .day-count-badge .count-number { font-size: 18px; }
+      .chevron { grid-column: 3; grid-row: 1 / span 3; }
+      th:first-child, td:first-child { width: 82px; }
+      th { padding: 9px 11px; font-size: 8px; }
+      td { padding: 11px; font-size: 11px; }
+      .empty-row td { padding: 15px 11px; }
     }
 
-    @media (max-width: 380px) {
-      .page-shell { width: calc(100% - 22px); }
-      .section-heading { flex-direction: column; }
-      .day-count { padding: 9px 10px; }
-      .sync-meta { max-width: 43%; }
-      .day-summary { padding-inline: 10px; }
+    @media (max-width: 360px) {
+      .page-shell { width: calc(100% - 16px); margin: 8px auto; }
+      .hero { grid-template-columns: minmax(0, 1fr) auto; }
+      h1 { font-size: 22px; }
+      .section-controls { gap: 10px; }
+      .text-button { font-size: 7px; }
+      .sync-meta { max-width: 44%; }
+      .day-summary { padding-inline: 9px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -319,16 +294,16 @@
   <div class="page-shell">
     <header class="topbar">
       <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>KREJUV FEC</span></div>
-      <div class="topbar-note">Field schedule · Live sheet data</div>
     </header>
 
     <main>
       <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">Commissioning work plan</p>
-        <h1 id="page-title"><span>Blowdown</span><span>Tie-In</span></h1>
+        <h1 id="page-title"><span>Blowdown Tie-In</span></h1>
         <div class="hero-bottom">
-          <p class="hero-description">Three-day activity schedule for the KREJUV FEC blowdown tie-in. The daily plan, date and work location are read directly from the shared schedule sheet.</p>
-          <div class="day-count">3 days <span aria-hidden="true">/</span> live schedule</div>
+          <div class="day-count" id="availability-badge" aria-live="polite">
+            <span id="available-day-count">—</span>
+            <span id="available-day-label">days available</span>
+          </div>
         </div>
       </section>
 
@@ -350,7 +325,7 @@
         <div class="day-list" id="day-list">
           <details class="day-card" data-day="1" open>
             <summary class="day-summary">
-              <div class="day-index-wrap"><span class="day-index">Day 1</span><span class="day-small-label">Schedule</span></div>
+              <div class="day-index-wrap"><span class="day-index">Day 1</span></div>
               <div class="summary-field" data-role="date"><span class="field-label">Date</span><span class="field-value" data-date>Loading…</span></div>
               <div class="summary-field" data-role="location"><span class="field-label">Location</span><span class="field-value" data-location>Loading…</span></div>
               <div class="day-count-badge"><span class="count-number" data-count>—</span><br>activities</div>
@@ -364,7 +339,7 @@
 
           <details class="day-card" data-day="2">
             <summary class="day-summary">
-              <div class="day-index-wrap"><span class="day-index">Day 2</span><span class="day-small-label">Schedule</span></div>
+              <div class="day-index-wrap"><span class="day-index">Day 2</span></div>
               <div class="summary-field" data-role="date"><span class="field-label">Date</span><span class="field-value" data-date>Loading…</span></div>
               <div class="summary-field" data-role="location"><span class="field-label">Location</span><span class="field-value" data-location>Loading…</span></div>
               <div class="day-count-badge"><span class="count-number" data-count>—</span><br>activities</div>
@@ -378,7 +353,7 @@
 
           <details class="day-card" data-day="3">
             <summary class="day-summary">
-              <div class="day-index-wrap"><span class="day-index">Day 3</span><span class="day-small-label">Schedule</span></div>
+              <div class="day-index-wrap"><span class="day-index">Day 3</span></div>
               <div class="summary-field" data-role="date"><span class="field-label">Date</span><span class="field-value" data-date>Loading…</span></div>
               <div class="summary-field" data-role="location"><span class="field-label">Location</span><span class="field-value" data-location>Loading…</span></div>
               <div class="day-count-badge"><span class="count-number" data-count>—</span><br>activities</div>
@@ -393,10 +368,6 @@
       </section>
     </main>
 
-    <footer>
-      <span>Schedule data is read-only here and remains managed in Google Sheets.</span>
-      <span><a href="https://docs.google.com/spreadsheets/d/1XAyrsD9GLGaY3ZnaiWnND25iF3DsvKR_rhKFXkcffmQ/edit" target="_blank" rel="noopener noreferrer">Open source schedule ↗</a></span>
-    </footer>
   </div>
 
   <script>
@@ -433,6 +404,38 @@
       return (table?.rows || []).map(row => (row?.c || []).map(cellText));
     }
 
+    function makeDateKey(year, month, day) {
+      const date = new Date(Date.UTC(year, month - 1, day));
+      if (date.getUTCFullYear() !== year || date.getUTCMonth() + 1 !== month || date.getUTCDate() !== day) return null;
+      return String(year).padStart(4, "0") + "-" + String(month).padStart(2, "0") + "-" + String(day).padStart(2, "0");
+    }
+
+    function dateKeyFromText(value) {
+      const text = String(value || "").trim();
+      let match = text.match(/^(\d{4})[/.\-](\d{1,2})[/.\-](\d{1,2})$/);
+      if (match) return makeDateKey(Number(match[1]), Number(match[2]), Number(match[3]));
+      match = text.match(/^(\d{1,2})[/.\-](\d{1,2})[/.\-](\d{2,4})$/);
+      if (match) {
+        let year = Number(match[3]);
+        if (year < 100) year += year < 50 ? 2000 : 1900;
+        return makeDateKey(year, Number(match[2]), Number(match[1]));
+      }
+      const months = { jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12 };
+      match = text.match(/^(\d{1,2})\s+([A-Za-z]{3,})[,]?\s+(\d{4})$/);
+      if (match) return makeDateKey(Number(match[3]), months[match[2].slice(0, 3).toLowerCase()], Number(match[1]));
+      match = text.match(/^([A-Za-z]{3,})\s+(\d{1,2}),?\s+(\d{4})$/);
+      if (match) return makeDateKey(Number(match[3]), months[match[1].slice(0, 3).toLowerCase()], Number(match[2]));
+      return null;
+    }
+
+    function malaysiaTodayKey() {
+      const parts = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Asia/Kuala_Lumpur", year: "numeric", month: "2-digit", day: "2-digit"
+      }).formatToParts(new Date());
+      const values = Object.fromEntries(parts.filter(part => part.type !== "literal").map(part => [part.type, part.value]));
+      return values.year + "-" + values.month + "-" + values.day;
+    }
+
     function isDateText(value) {
       return /^\d{1,2}[/.\-]\d{1,2}[/.\-]\d{2,4}$/.test(value) || /^\d{1,2} [A-Za-z]{3} \d{4}$/.test(value) || /^Date\(/.test(value);
     }
@@ -454,7 +457,7 @@
         time: row[timeIndex] || "",
         activity: row[activityIndex] || ""
       })).filter(item => item.time || item.activity).filter(item => !/^(activities|activity|time)$/i.test(item.activity));
-      return { date, location, activities };
+      return { date, dateKey: dateKeyFromText(date), location, activities };
     }
 
     function requestTab(tab) {
@@ -495,6 +498,22 @@
     function setCellText(element, value) {
       element.textContent = value;
       element.title = value;
+    }
+
+    function updateAvailability() {
+      const countElement = document.getElementById("available-day-count");
+      const labelElement = document.getElementById("available-day-label");
+      if (days.some(day => !day.cache)) {
+        countElement.textContent = "—";
+        labelElement.textContent = "days available";
+        return;
+      }
+      const today = malaysiaTodayKey();
+      const available = days.filter(day =>
+        day.cache.activities.length > 0 && day.cache.dateKey && day.cache.dateKey >= today
+      ).length;
+      countElement.textContent = String(available);
+      labelElement.textContent = available === 1 ? "day available" : "days available";
     }
 
     function renderSchedule(day, schedule) {
@@ -571,6 +590,7 @@
         }
       }));
       const failures = outcomes.filter(success => !success).length;
+      updateAvailability();
       const syncedAt = timeNow();
       if (failures === 0) {
         syncLabel.textContent = "Schedule is up to date";
