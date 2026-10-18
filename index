@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f7f1">
+  <link rel="icon" type="image/png" href="https://i.ibb.co/gbgLwSqg/Chat-GPT-Image-Jul-26-2026-04-53-23-AM-2.png">
+  <meta name="description" content="Daily operations log for the KREJUV FEC Blowdown Tie-In project.">
+  <title>KREJUV FEC | Blowdown Tie-In Daily Log</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #183b2d;
+      --ink-2: #315343;
+      --muted: #748077;
+      --line: #e5e8df;
+      --paper: #f7f7f1;
+      --card: #fffefa;
+      --soft: #eef1e8;
+      --accent: #b6c1a3;
+      --shadow: 0 14px 40px rgba(35, 54, 40, .075);
+      --radius-lg: 22px;
+      --radius-md: 14px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        repeating-linear-gradient(135deg, rgba(57, 79, 63, .025) 0 1px, transparent 1px 8px) left top / 50px 100% no-repeat,
+        repeating-linear-gradient(135deg, rgba(57, 79, 63, .025) 0 1px, transparent 1px 8px) right top / 50px 100% no-repeat,
+        var(--paper);
+      min-height: 100vh;
+    }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; }
+    .page-shell { max-width: 1220px; margin: 0 auto; padding: 24px 28px 52px; }
+    .topbar {
+      display: flex; align-items: center; gap: 34px; min-height: 48px;
+      padding: 0 2px; margin-bottom: 42px;
+    }
+    .brand { display: inline-flex; gap: 10px; align-items: center; text-decoration: none; font-weight: 750; letter-spacing: -.03em; }
+    .brand-mark {
+      display: grid; place-items: center; width: 31px; height: 31px; border-radius: 10px;
+      color: #f9f9f3; background: var(--ink); font-size: 12px; font-weight: 800; letter-spacing: -.06em;
+      box-shadow: 0 4px 10px rgba(24,59,45,.18);
+    }
+    .brand-text { font-size: 14px; }
+    .topnav { display: flex; align-items: center; gap: 27px; color: #818981; font-size: 12px; }
+    .topnav a { text-decoration: none; }
+    .topnav a:hover { color: var(--ink); }
+    .topbar-spacer { flex: 1; }
+    .source-link, .button-primary, .button-secondary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 39px; padding: 0 15px; border-radius: 999px; text-decoration: none;
+      font-size: 12px; font-weight: 650; transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .source-link, .button-secondary { color: var(--ink); background: #fffefa; border: 1px solid var(--line); }
+    .button-primary { color: white; background: var(--ink); border: 1px solid var(--ink); }
+    .source-link:hover, .button-secondary:hover, .button-primary:hover { transform: translateY(-1px); }
+    .button-primary:hover { background: #24513d; }
+    .hero { max-width: 840px; margin: 0 auto 30px; text-align: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px;
+      color: var(--ink-2); background: #f1f3eb; border: 1px solid #e3e8dc;
+      border-radius: 999px; font-size: 10px; font-weight: 750; letter-spacing: .09em; text-transform: uppercase;
+    }
+    .eyebrow-dot { width: 6px; height: 6px; background: #6f8a63; border-radius: 50%; box-shadow: 0 0 0 3px rgba(111,138,99,.13); }
+    h1 {
+      margin: 16px 0 9px; color: var(--ink); font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 5vw, 56px); line-height: 1.02; letter-spacing: -.055em; font-weight: 500;
+    }
+    h1 span { display: block; color: #8b978c; }
+    .hero-copy { max-width: 600px; margin: 0 auto; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .hero-actions { display: flex; justify-content: center; gap: 10px; margin-top: 21px; }
+    .summary-strip {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 800px;
+      margin: 27px auto 29px;
+    }
+    .summary-card {
+      min-height: 78px; padding: 14px 17px; text-align: left; background: rgba(255,254,250,.78);
+      border: 1px solid var(--line); border-radius: 15px;
+    }
+    .summary-label { display: block; margin-bottom: 7px; color: #879088; font-size: 10px; font-weight: 650; letter-spacing: .07em; text-transform: uppercase; }
+    .summary-value { color: var(--ink); font-size: 17px; font-weight: 730; letter-spacing: -.03em; }
+    .summary-value.small { font-size: 13px; }
+    .workspace {
+      overflow: hidden; background: rgba(255,254,250,.92); border: 1px solid #e2e5dc;
+      border-radius: var(--radius-lg); box-shadow: var(--shadow);
+    }
+    .workspace-top {
+      display: flex; align-items: center; gap: 15px; padding: 17px 20px;
+      border-bottom: 1px solid var(--line); background: rgba(250,250,245,.8);
+    }
+    .workspace-title { min-width: 165px; }
+    .workspace-title strong { display: block; font-size: 13px; letter-spacing: -.02em; }
+    .workspace-title span { display: block; margin-top: 3px; color: var(--muted); font-size: 10px; }
+    .toolbar-spacer { flex: 1; }
+    .search-wrap { position: relative; width: min(300px, 35vw); }
+    .search-icon { position: absolute; left: 11px; top: 10px; color: #89948b; pointer-events: none; }
+    .search-input {
+      width: 100%; height: 36px; padding: 0 12px 0 33px; color: var(--ink); background: #fffefa;
+      border: 1px solid var(--line); border-radius: 10px; outline: none; font-size: 11px;
+    }
+    .search-input:focus, .connect-input:focus { border-color: #9caf9d; box-shadow: 0 0 0 3px rgba(85,117,95,.11); }
+    .toolbar-button {
+      height: 36px; padding: 0 12px; color: var(--ink-2); background: #fffefa;
+      border: 1px solid var(--line); border-radius: 10px; font-size: 10px; font-weight: 650;
+      white-space: nowrap;
+    }
+    .toolbar-button:hover { background: #f5f6f0; border-color: #d5dbcf; }
+    .connection-status {
+      display: inline-flex; align-items: center; gap: 7px; padding: 8px 10px;
+      color: #667268; background: #f4f5ef; border: 1px solid #e7e9e1; border-radius: 999px;
+      font-size: 10px; white-space: nowrap;
+    }
+    .status-light { width: 7px; height: 7px; border-radius: 50%; background: #d19a53; }
+    .connection-status.connected .status-light { background: #4e9467; }
+    .connection-status.error .status-light { background: #bd6258; }
+    .log-list { padding: 18px; }
+    .day-card {
+      margin: 0 0 11px; overflow: hidden; background: #fffefa; border: 1px solid var(--line);
+      border-radius: 15px; transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    .day-card:hover { border-color: #d8ded3; }
+    .day-card[open] { box-shadow: 0 5px 18px rgba(37,55,42,.035); }
+    .day-summary {
+      display: flex; align-items: center; gap: 14px; min-height: 68px; padding: 12px 15px;
+      list-style: none; cursor: pointer;
+    }
+    .day-summary::-webkit-details-marker { display: none; }
+    .calendar-icon {
+      display: grid; place-items: center; flex: 0 0 39px; height: 39px; border-radius: 12px;
+      color: var(--ink); background: #eff2e9; font-size: 11px; font-weight: 750;
+    }
+    .day-heading { min-width: 0; flex: 1; }
+    .day-heading strong { display: block; overflow: hidden; color: var(--ink); font-size: 13px; font-weight: 720; text-overflow: ellipsis; white-space: nowrap; }
+    .day-heading span { display: block; margin-top: 4px; color: #879088; font-size: 10px; }
+    .day-badge { padding: 6px 9px; color: #667467; background: #f5f6f1; border-radius: 999px; font-size: 9px; font-weight: 650; white-space: nowrap; }
+    .chevron { width: 17px; height: 17px; color: #829085; transition: transform .2s ease; }
+    details[open] .chevron { transform: rotate(180deg); }
+    .day-content { padding: 0 15px 16px 68px; }
+    .table-scroll { overflow-x: auto; border: 1px solid #e9ece5; border-radius: 11px; }
+    .log-table { width: 100%; border-collapse: collapse; font-size: 11px; line-height: 1.5; }
+    .log-table th { padding: 9px 11px; color: #68766b; background: #f5f6f0; font-size: 9px; font-weight: 750; letter-spacing: .06em; text-align: left; text-transform: uppercase; white-space: nowrap; }
+    .log-table td { min-width: 100px; padding: 10px 11px; color: #435348; border-top: 1px solid #edf0e9; vertical-align: top; white-space: pre-wrap; }
+    .log-table td:first-child { color: var(--ink); font-weight: 650; }
+    .log-notes { display: grid; gap: 8px; }
+    .log-note { position: relative; padding: 11px 13px 11px 15px; color: #435348; background: #f8f9f4; border: 1px solid #ecefe7; border-radius: 10px; font-size: 11px; line-height: 1.65; white-space: pre-wrap; }
+    .log-note::before { position: absolute; top: 13px; bottom: 13px; left: 0; width: 3px; background: #a9b89d; border-radius: 0 3px 3px 0; content: ""; }
+    .empty-state { padding: 44px 22px 48px; text-align: center; }
+    .empty-icon { display: grid; place-items: center; width: 48px; height: 48px; margin: 0 auto 13px; color: var(--ink); background: #eef1e8; border-radius: 16px; }
+    .empty-state h2 { margin: 0 0 7px; font-family: Georgia, "Times New Roman", serif; font-size: 23px; font-weight: 500; letter-spacing: -.03em; }
+    .empty-state p { max-width: 440px; margin: 0 auto; color: var(--muted); font-size: 11px; line-height: 1.7; }
+    .empty-actions { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 17px; }
+    .empty-message { margin-top: 12px !important; color: #9a7058 !important; }
+    .setup-panel { margin: 0 18px 18px; padding: 16px 17px; background: #f7f8f3; border: 1px solid #e6eae1; border-radius: 13px; }
+    .setup-panel summary { color: var(--ink-2); cursor: pointer; font-size: 11px; font-weight: 700; }
+    .setup-panel ol { margin: 12px 0 0; padding-left: 20px; color: #66736a; font-size: 10px; line-height: 1.75; }
+    .setup-panel code { padding: 2px 4px; color: #355544; background: #ebeee6; border-radius: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .95em; }
+    .footer { display: flex; justify-content: space-between; gap: 12px; padding: 14px 20px 17px; color: #899188; border-top: 1px solid var(--line); font-size: 9px; }
+    .footer a { color: #526b5a; text-decoration: none; }
+    dialog {
+      width: min(490px, calc(100% - 28px)); padding: 0; color: var(--ink); background: var(--card);
+      border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 24px 75px rgba(17,35,24,.22);
+    }
+    dialog::backdrop { background: rgba(18,37,27,.38); backdrop-filter: blur(3px); }
+    .dialog-inner { padding: 22px; }
+    .dialog-head { display: flex; align-items: start; gap: 10px; margin-bottom: 16px; }
+    .dialog-head h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: 23px; font-weight: 500; letter-spacing: -.03em; }
+    .dialog-head p { margin: 5px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .dialog-close { margin-left: auto; width: 31px; height: 31px; color: #6f7b72; background: #f2f4ed; border: 0; border-radius: 9px; font-size: 17px; }
+    .field-label { display: block; margin-bottom: 6px; color: #59685d; font-size: 10px; font-weight: 700; }
+    .connect-input { width: 100%; height: 40px; padding: 0 11px; color: var(--ink); background: white; border: 1px solid var(--line); border-radius: 10px; outline: 0; font-size: 11px; }
+    .field-help { margin: 7px 0 14px; color: #818b83; font-size: 9px; line-height: 1.55; }
+    .dialog-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 17px; }
+    .dialog-note { margin: 0 0 13px; padding: 10px 11px; color: #735b43; background: #faf5ed; border: 1px solid #efe4d3; border-radius: 10px; font-size: 9px; line-height: 1.6; }
+    .toast { position: fixed; right: 20px; bottom: 20px; z-index: 10; max-width: 340px; padding: 11px 14px; color: white; background: var(--ink); border-radius: 11px; box-shadow: var(--shadow); font-size: 11px; opacity: 0; transform: translateY(8px); pointer-events: none; transition: .2s ease; }
+    .toast.visible { opacity: 1; transform: translateY(0); }
+    .hidden { display: none !important; }
+    @media (max-width: 760px) {
+      .page-shell { padding: 17px 15px 32px; }
+      .topbar { gap: 14px; margin-bottom: 31px; }
+      .topnav { display: none; }
+      .source-link { min-height: 35px; padding: 0 11px; font-size: 10px; }
+      .hero { margin-bottom: 23px; }
+      .summary-strip { gap: 7px; margin: 22px auto; }
+      .summary-card { min-height: 69px; padding: 11px 10px; }
+      .summary-value { font-size: 15px; }
+      .summary-value.small { font-size: 11px; }
+      .workspace-top { flex-wrap: wrap; gap: 9px; padding: 14px; }
+      .workspace-title { flex: 1; }
+      .toolbar-spacer { display: none; }
+      .search-wrap { order: 3; width: 100%; }
+      .toolbar-button { flex: 1; }
+      .connection-status { padding: 7px 8px; }
+      .log-list { padding: 11px; }
+      .day-summary { gap: 10px; min-height: 62px; padding: 10px; }
+      .day-content { padding: 0 10px 12px; }
+      .footer { flex-direction: column; padding: 13px 15px; }
+    }
+    @media (max-width: 430px) {
+      h1 { font-size: 35px; }
+      .summary-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .summary-label { font-size: 8px; letter-spacing: .04em; }
+      .summary-value.small { font-size: 10px; }
+      .day-badge { display: none; }
+      .empty-state { padding: 34px 17px; }
+      .hero-actions .button-secondary { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="KREJUV FEC daily log home">
+        <span class="brand-mark">KF</span><span class="brand-text">KREJUV FEC</span>
+      </a>
+      <nav class="topnav" aria-label="Main navigation">
+        <a href="#daily-log">Daily log</a>
+        <a href="#connection">Connection</a>
+      </nav>
+      <span class="topbar-spacer"></span>
+      <a class="source-link" href="https://docs.google.com/spreadsheets/d/1XAyrsD9GLGaY3ZnaiWnND25iF3DsvKR_rhKFXkcffmQ/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+        Open source sheet <span aria-hidden="true">↗</span>
+      </a>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> Project operations log</div>
+        <h1 id="page-title">KREJUV FEC<span>BLOWDOWN TIE-IN</span></h1>
+        <p class="hero-copy">A clear, day-by-day record of field activities, progress and follow-up actions.</p>
+        <div class="hero-actions">
+          <a class="button-primary" href="#daily-log">View daily log <span aria-hidden="true">↓</span></a>
+          <button class="button-secondary" id="connectTopButton" type="button">Connect Google Sheet</button>
+        </div>
+        <div class="summary-strip" aria-label="Daily log summary">
+          <div class="summary-card"><span class="summary-label">Log days</span><strong class="summary-value" id="dayCount">—</strong></div>
+          <div class="summary-card"><span class="summary-label">Latest day</span><strong class="summary-value small" id="latestDay">Waiting for sheet</strong></div>
+          <div class="summary-card"><span class="summary-label">Connection</span><strong class="summary-value small" id="connectionSummary">Not connected</strong></div>
+        </div>
+      </section>
+
+      <section class="workspace" id="daily-log" aria-label="Daily activity log">
+        <div class="workspace-top">
+          <div class="workspace-title"><strong>Daily activity</strong><span id="lastUpdated">Connect the source sheet to load daily tabs</span></div>
+          <div class="toolbar-spacer"></div>
+          <div class="connection-status" id="statusPill" aria-live="polite"><span class="status-light"></span><span id="statusText">Not connected</span></div>
+          <button class="toolbar-button" id="refreshButton" type="button" title="Refresh data from Google Sheets">↻ Refresh</button>
+          <div class="search-wrap">
+            <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <input class="search-input" id="searchInput" type="search" placeholder="Search dates and activities…" aria-label="Search daily log">
+          </div>
+          <button class="toolbar-button" id="expandButton" type="button">Collapse all</button>
+        </div>
+        <div class="log-list" id="logList">
+          <div class="empty-state" id="emptyState">
+            <div class="empty-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 3v4M16 3v4M4 9h16M8 13h3M8 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <h2 id="emptyTitle">Connect your daily log</h2>
+            <p id="emptyCopy">Once connected, every non-empty worksheet tab will appear here as a day section. New daily tabs will load automatically when you refresh.</p>
+            <div class="empty-actions">
+              <button class="button-primary" id="connectEmptyButton" type="button">Connect Google Sheet</button>
+              <a class="button-secondary" href="https://docs.google.com/spreadsheets/d/1XAyrsD9GLGaY3ZnaiWnND25iF3DsvKR_rhKFXkcffmQ/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Open source sheet ↗</a>
+            </div>
+            <p class="empty-message hidden" id="emptyMessage"></p>
+          </div>
+          <div id="daysContainer"></div>
+          <div class="empty-state hidden" id="noResults">
+            <h2>No matching entries</h2>
+            <p>Try another date or search term.</p>
+          </div>
+        </div>
+        <details class="setup-panel" id="connection">
+          <summary>One-time Google Sheet connection setup</summary>
+          <ol>
+            <li>Open the linked spreadsheet and choose <code>Extensions → Apps Script</code>.</li>
+            <li>Replace the editor contents with the companion <code>Code.gs</code> connector file.</li>
+            <li>Choose <code>Deploy → New deployment → Web app</code>. Set access to the audience that is allowed to see this log, then deploy and copy the web app URL ending in <code>/exec</code>.</li>
+            <li>Choose <strong>Connect Google Sheet</strong> above and paste that URL. The page will then load every non-empty tab and remember the endpoint in this browser. To make a shared GitHub Pages version load for all visitors, set <code>DEFAULT_ENDPOINT</code> near the top of the page script after deciding who is allowed to access the data.</li>
+          </ol>
+        </details>
+        <footer class="footer">
+          <span>Daily log view · KREJUV FEC Blowdown Tie-In</span>
+          <span>Source: <a href="https://docs.google.com/spreadsheets/d/1XAyrsD9GLGaY3ZnaiWnND25iF3DsvKR_rhKFXkcffmQ/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Google Sheet</a></span>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="connectDialog" aria-labelledby="dialogTitle">
+    <form class="dialog-inner" id="connectForm" method="dialog">
+      <div class="dialog-head">
+        <div>
+          <h2 id="dialogTitle">Connect the source sheet</h2>
+          <p>Paste the Google Apps Script web app URL for this spreadsheet. It should end in <code>/exec</code>.</p>
+        </div>
+        <button class="dialog-close" id="closeDialogButton" type="button" aria-label="Close">×</button>
+      </div>
+      <p class="dialog-note"><strong>Access matters:</strong> choose an Apps Script deployment audience that matches who may view these project logs. A public deployment can expose the spreadsheet data to anyone who has the endpoint.</p>
+      <label class="field-label" for="endpointInput">Web app URL</label>
+      <input class="connect-input" id="endpointInput" type="url" inputmode="url" placeholder="https://script.google.com/macros/s/.../exec" autocomplete="url" required>
+      <p class="field-help">The endpoint is saved only in this browser's local storage. You can remove it later from this connection dialog.</p>
+      <div class="dialog-actions">
+        <button class="button-secondary" id="disconnectButton" type="button">Disconnect</button>
+        <button class="button-secondary" id="cancelButton" type="button">Cancel</button>
+        <button class="button-primary" type="submit">Connect</button>
+      </div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    "use strict";
+
+    const STORAGE_KEY = "krejuv-fec-daily-log-endpoint-v1";
+    // Leave blank for browser-by-browser setup. Set this only if the deployed page should load the sheet for every visitor.
+    const DEFAULT_ENDPOINT = "";
+    const savedEndpoint = localStorage.getItem(STORAGE_KEY);
+    const state = { sheets: [], endpoint: savedEndpoint === null ? DEFAULT_ENDPOINT : savedEndpoint, expanded: true, error: "" };
+    const $ = (selector) => document.querySelector(selector);
+    const logList = $("#logList");
+    const daysContainer = $("#daysContainer");
+    const emptyState = $("#emptyState");
+    const emptyTitle = $("#emptyTitle");
+    const emptyCopy = $("#emptyCopy");
+    const emptyMessage = $("#emptyMessage");
+    const noResults = $("#noResults");
+    const statusPill = $("#statusPill");
+    const connectDialog = $("#connectDialog");
+    const endpointInput = $("#endpointInput");
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+    }
+
+    function cleanRows(rows) {
+      if (!Array.isArray(rows)) return [];
+      return rows
+        .filter((row) => Array.isArray(row) && row.some((cell) => String(cell ?? "").trim() !== ""))
+        .map((row) => row.map((cell) => String(cell ?? "").trim()));
+    }
+
+    function parseTabDate(label) {
+      const text = String(label || "").trim();
+      let match = text.match(/^(\d{4})[./-](\d{1,2})[./-](\d{1,2})/);
+      if (match) return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+      match = text.match(/^(\d{1,2})[./-](\d{1,2})[./-](\d{2,4})/);
+      if (match) {
+        let year = Number(match[3]);
+        if (year < 100) year += year < 70 ? 2000 : 1900;
+        return new Date(year, Number(match[2]) - 1, Number(match[1]));
+      }
+      const parsed = Date.parse(text);
+      return Number.isNaN(parsed) ? null : new Date(parsed);
+    }
+
+    function formatDate(label) {
+      const date = parseTabDate(label);
+      if (!date || Number.isNaN(date.getTime())) return label || "Untitled day";
+      return new Intl.DateTimeFormat("en-MY", { day: "numeric", month: "long", year: "numeric" }).format(date);
+    }
+
+    function sortSheets(sheets) {
+      return [...sheets].sort((a, b) => {
+        const dateA = parseTabDate(a.name);
+        const dateB = parseTabDate(b.name);
+        if (dateA && dateB) return dateB - dateA;
+        if (dateA) return -1;
+        if (dateB) return 1;
+        return (Number(b.index) || 0) - (Number(a.index) || 0);
+      });
+    }
+
+    function isHeaderRow(row) {
+      const text = row.join(" ").toLowerCase();
+      return /\b(time|activity|activities|description|task|status|remarks?|work|location|personnel|progress|action|item|start|finish|duration|update|log)\b/.test(text);
+    }
+
+    function renderRows(rows) {
+      const data = cleanRows(rows);
+      if (!data.length) return '<p class="log-note">No entries in this tab.</p>';
+      const columns = Math.max(...data.map((row) => row.length));
+      if (columns <= 1) {
+        return '<div class="log-notes">' + data.map((row) => '<div class="log-note">' + escapeHTML(row[0]) + '</div>').join("") + '</div>';
+      }
+      const hasHeader = data.length > 1 && isHeaderRow(data[0]);
+      const headers = hasHeader ? data[0] : Array.from({ length: columns }, (_, index) => `Field ${index + 1}`);
+      const body = hasHeader ? data.slice(1) : data;
+      const headerHTML = '<thead><tr>' + Array.from({ length: columns }, (_, index) => '<th>' + escapeHTML(headers[index] || `Field ${index + 1}`) + '</th>').join("") + '</tr></thead>';
+      const rowsHTML = body.map((row) => '<tr>' + Array.from({ length: columns }, (_, index) => '<td>' + escapeHTML(row[index] || "") + '</td>').join("") + '</tr>').join("");
+      if (!body.length) return '<div class="table-scroll"><table class="log-table">' + headerHTML + '<tbody></tbody></table></div>';
+      return '<div class="table-scroll"><table class="log-table">' + headerHTML + '<tbody>' + rowsHTML + '</tbody></table></div>';
+    }
+
+    function daySearchText(sheet) {
+      return [sheet.name, ...cleanRows(sheet.rows).flat()].join(" ").toLowerCase();
+    }
+
+    function render() {
+      const sheets = sortSheets(state.sheets);
+      const search = $("#searchInput").value.trim().toLowerCase();
+      const visible = sheets.filter((sheet) => !search || daySearchText(sheet).includes(search));
+      $("#dayCount").textContent = String(sheets.length);
+      $("#latestDay").textContent = sheets.length ? formatDate(sheets[0].name) : "Waiting for sheet";
+      $("#connectionSummary").textContent = state.error ? "Needs attention" : state.endpoint && sheets.length ? "Connected" : state.endpoint ? "No daily tabs" : "Not connected";
+      $("#lastUpdated").textContent = state.lastUpdated ? `Updated ${new Intl.DateTimeFormat("en-MY", { dateStyle: "medium", timeStyle: "short" }).format(new Date(state.lastUpdated))}` : "Connect the source sheet to load daily tabs";
+      $("#statusText").textContent = state.error ? "Connection error" : state.endpoint && sheets.length ? "Sheet connected" : state.endpoint ? "Connected · no entries" : "Not connected";
+      statusPill.classList.toggle("connected", Boolean(state.endpoint && !state.error));
+      statusPill.classList.toggle("error", Boolean(state.error));
+      $("#expandButton").textContent = state.expanded ? "Collapse all" : "Expand all";
+
+      daysContainer.innerHTML = visible.map((sheet, index) => {
+        const rows = cleanRows(sheet.rows);
+        const date = parseTabDate(sheet.name);
+        const dateTile = date ? String(date.getDate()).padStart(2, "0") : "LOG";
+        const status = sheet.id !== undefined ? `<a class="day-badge" href="${escapeHTML('https://docs.google.com/spreadsheets/d/1XAyrsD9GLGaY3ZnaiWnND25iF3DsvKR_rhKFXkcffmQ/edit#gid=' + encodeURIComponent(sheet.id))}" target="_blank" rel="noopener noreferrer">Open tab ↗</a>` : `<span class="day-badge">${rows.length} ${rows.length === 1 ? "row" : "rows"}</span>`;
+        return `<details class="day-card" data-day="${escapeHTML(sheet.name)}" ${state.expanded ? "open" : ""}>
+          <summary class="day-summary">
+            <span class="calendar-icon">${escapeHTML(dateTile)}</span>
+            <span class="day-heading"><strong>${escapeHTML(formatDate(sheet.name))}</strong><span>${rows.length} ${rows.length === 1 ? "log entry" : "log entries"}</span></span>
+            ${status}
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="day-content">${renderRows(rows)}</div>
+        </details>`;
+      }).join("");
+
+      const hasRows = sheets.length > 0;
+      emptyState.classList.toggle("hidden", hasRows);
+      noResults.classList.toggle("hidden", !hasRows || visible.length > 0);
+      if (!hasRows) {
+        emptyTitle.textContent = state.error ? "Could not load the daily log" : state.endpoint ? "No daily entries found" : "Connect your daily log";
+        emptyCopy.textContent = state.error
+          ? "Check the web app URL and its access settings, then try again."
+          : state.endpoint
+            ? "The connector is responding, but it did not find any non-empty worksheet tabs. Add log entries to a day tab and refresh."
+            : "Once connected, every non-empty worksheet tab will appear here as a day section. New daily tabs will load automatically when you refresh.";
+        emptyMessage.textContent = state.error || "";
+        emptyMessage.classList.toggle("hidden", !state.error);
+      }
+    }
+
+    let toastTimer;
+    function showToast(message) {
+      const toast = $("#toast");
+      toast.textContent = message;
+      toast.classList.add("visible");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("visible"), 2800);
+    }
+
+    function showConnectDialog() {
+      endpointInput.value = state.endpoint;
+      if (typeof connectDialog.showModal === "function") connectDialog.showModal();
+      else connectDialog.setAttribute("open", "");
+      setTimeout(() => endpointInput.focus(), 40);
+    }
+
+    function normalizeEndpoint(value) {
+      const url = new URL(value.trim());
+      if (url.protocol !== "https:") throw new Error("Enter a secure https:// web app URL.");
+      if (!/script\.google\.com|script\.googleusercontent\.com/i.test(url.hostname)) throw new Error("Use the Google Apps Script web app URL ending in /exec.");
+      if (!/\/exec\/?$/.test(url.pathname)) throw new Error("The web app URL must end in /exec.");
+      return url.href;
+    }
+
+    function loadFromEndpoint() {
+      if (!state.endpoint) { state.error = ""; state.sheets = []; render(); return; }
+      state.error = "";
+      state.sheets = [];
+      render();
+      const callbackName = "krejuvFecLogCallback";
+      const timeout = setTimeout(() => {
+        delete window[callbackName];
+        state.error = "The connector did not respond. Check the deployment URL and access settings.";
+        render();
+      }, 15000);
+      window[callbackName] = (payload) => {
+        clearTimeout(timeout);
+        delete window[callbackName];
+        if (!payload || !Array.isArray(payload.sheets)) {
+          state.error = "The connector response is not in the expected format. Replace Code.gs with the supplied connector and redeploy.";
+          render();
+          return;
+        }
+        state.sheets = payload.sheets.map((sheet, index) => ({
+          name: String(sheet.name || `Day ${index + 1}`),
+          id: sheet.id,
+          index: sheet.index ?? index,
+          rows: cleanRows(sheet.rows)
+        })).filter((sheet) => sheet.rows.length > 0);
+        state.lastUpdated = payload.updatedAt || new Date().toISOString();
+        state.error = "";
+        state.expanded = true;
+        render();
+        if (state.sheets.length) showToast(`${state.sheets.length} daily ${state.sheets.length === 1 ? "tab" : "tabs"} loaded.`);
+      };
+      try {
+        const url = new URL(state.endpoint);
+        url.searchParams.set("callback", callbackName);
+        url.searchParams.set("_", String(Date.now()));
+        const script = document.createElement("script");
+        script.src = url.href;
+        script.async = true;
+        script.onerror = () => {
+          clearTimeout(timeout);
+          delete window[callbackName];
+          state.error = "Could not reach the connector. Verify the URL, deployment and access settings.";
+          render();
+        };
+        document.head.appendChild(script);
+        script.onload = () => script.remove();
+      } catch (error) {
+        clearTimeout(timeout);
+        state.error = error.message || "Invalid connector URL.";
+        render();
+      }
+    }
+
+    $("#connectTopButton").addEventListener("click", showConnectDialog);
+    $("#connectEmptyButton").addEventListener("click", showConnectDialog);
+    $("#closeDialogButton").addEventListener("click", () => connectDialog.close());
+    $("#cancelButton").addEventListener("click", () => connectDialog.close());
+    $("#connectForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      try {
+        state.endpoint = normalizeEndpoint(endpointInput.value);
+        localStorage.setItem(STORAGE_KEY, state.endpoint);
+        connectDialog.close();
+        loadFromEndpoint();
+      } catch (error) {
+        endpointInput.setCustomValidity(error.message || "Enter a valid web app URL.");
+        endpointInput.reportValidity();
+        endpointInput.addEventListener("input", () => endpointInput.setCustomValidity(""), { once: true });
+      }
+    });
+    $("#disconnectButton").addEventListener("click", () => {
+      localStorage.setItem(STORAGE_KEY, "");
+      state.endpoint = "";
+      state.error = "";
+      state.sheets = [];
+      state.lastUpdated = "";
+      state.expanded = true;
+      connectDialog.close();
+      render();
+      showToast("Google Sheet disconnected from this browser.");
+    });
+    $("#refreshButton").addEventListener("click", () => {
+      if (!state.endpoint) { showConnectDialog(); return; }
+      loadFromEndpoint();
+    });
+    $("#searchInput").addEventListener("input", render);
+    $("#expandButton").addEventListener("click", () => {
+      state.expanded = !state.expanded;
+      render();
+    });
+    connectDialog.addEventListener("click", (event) => {
+      if (event.target === connectDialog) connectDialog.close();
+    });
+
+    render();
+    if (state.endpoint) loadFromEndpoint();
+  </script>
+</body>
+</html>
