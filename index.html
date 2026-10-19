@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="KREJUV FEC blowdown tie-in activity schedule.">
+  <meta name="description" content="KREJUV FEC Blowdown Tie-In">
   <title>KREJUV FEC — Blowdown Tie-In</title>
   <style>
     :root {
@@ -76,6 +76,14 @@
       align-items: center;
       gap: 20px;
       padding: 22px 17px 19px;
+    }
+    .title-divider {
+      display: block;
+      width: 100%;
+      height: 10px;
+      flex: none;
+      background: #e0001b;
+      border-top: 1px solid var(--ink);
       border-bottom: 1px solid var(--ink);
     }
     h1 {
@@ -138,14 +146,13 @@
     .text-button[disabled] { cursor: wait; opacity: .55; }
 
     .sync-strip {
-      min-height: 34px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      padding: 0 17px;
-      border-bottom: 1px solid var(--soft-line);
-      font-size: 9px;
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      clip-path: inset(50%);
+      white-space: nowrap;
     }
     .sync-label { display: flex; align-items: center; gap: 7px; font-weight: 700; }
     .sync-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
@@ -154,11 +161,12 @@
 
     .day-list { display: grid; }
     .day-card { border-bottom: 1px solid var(--ink); background: #fff; }
+    .day-card[hidden] { display: none !important; }
     .day-card:last-child { border-bottom: 0; }
     .day-summary {
       min-height: 75px;
       display: grid;
-      grid-template-columns: minmax(130px, 1.05fr) minmax(110px, .85fr) minmax(150px, 1.2fr) 74px 20px;
+      grid-template-columns: minmax(130px, 1.05fr) minmax(110px, .85fr) minmax(150px, 1.2fr) 20px;
       align-items: center;
       gap: 16px;
       padding: 10px 17px;
@@ -193,17 +201,6 @@
       text-transform: uppercase;
     }
     .field-value { display: block; overflow: hidden; font-size: 12px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
-    .day-count-badge {
-      min-width: 60px;
-      padding-left: 12px;
-      border-left: 1px solid var(--soft-line);
-      text-align: right;
-      font-size: 8px;
-      font-weight: 700;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-    .day-count-badge .count-number { font-size: 19px; letter-spacing: -.05em; }
     .chevron {
       display: grid;
       width: 20px;
@@ -249,11 +246,9 @@
       .section-heading { align-items: flex-start; flex-direction: column; gap: 2px; padding: 8px 12px 7px; }
       .section-controls { width: 100%; gap: 13px; }
       .text-button { min-height: 25px; font-size: 8px; }
-      .sync-strip { min-height: 34px; gap: 8px; padding: 0 12px; font-size: 8px; }
-      .sync-meta { max-width: 48%; }
       .day-summary {
         min-height: 88px;
-        grid-template-columns: minmax(0, 1fr) auto 19px;
+        grid-template-columns: minmax(0, 1fr) 19px;
         grid-template-rows: auto auto auto;
         column-gap: 9px;
         row-gap: 1px;
@@ -265,9 +260,7 @@
       .summary-field[data-role="location"] { grid-column: 1; grid-row: 3; }
       .field-label { flex: 0 0 auto; margin: 0; font-size: 7px; }
       .field-value { min-width: 0; font-size: 10px; }
-      .day-count-badge { grid-column: 2; grid-row: 1 / span 3; min-width: 52px; padding-left: 9px; font-size: 7px; }
-      .day-count-badge .count-number { font-size: 18px; }
-      .chevron { grid-column: 3; grid-row: 1 / span 3; }
+      .chevron { grid-column: 2; grid-row: 1 / span 3; }
       th:first-child, td:first-child { width: 82px; }
       th { padding: 9px 11px; font-size: 8px; }
       td { padding: 11px; font-size: 11px; }
@@ -280,7 +273,6 @@
       h1 { font-size: 22px; }
       .section-controls { gap: 10px; }
       .text-button { font-size: 7px; }
-      .sync-meta { max-width: 44%; }
       .day-summary { padding-inline: 9px; }
     }
 
@@ -306,11 +298,12 @@
           </div>
         </div>
       </section>
+      <div class="title-divider" aria-hidden="true"></div>
 
       <section class="schedule-section" aria-labelledby="schedule-title">
         <div class="section-heading">
           <h2 class="section-label" id="schedule-title">Daily activities</h2>
-          <div class="section-controls" aria-label="Schedule controls">
+          <div class="section-controls" aria-label="Page controls">
             <button class="text-button" id="expand-all" type="button">Expand all</button>
             <button class="text-button" id="collapse-all" type="button">Collapse all</button>
             <button class="text-button" id="refresh" type="button">Refresh</button>
@@ -323,12 +316,11 @@
         </div>
 
         <div class="day-list" id="day-list">
-          <details class="day-card" data-day="1" open>
+          <details class="day-card" data-day="1" open hidden>
             <summary class="day-summary">
               <div class="day-index-wrap"><span class="day-index">Day 1</span></div>
               <div class="summary-field" data-role="date"><span class="field-label">Date</span><span class="field-value" data-date>Loading…</span></div>
               <div class="summary-field" data-role="location"><span class="field-label">Location</span><span class="field-value" data-location>Loading…</span></div>
-              <div class="day-count-badge"><span class="count-number" data-count>—</span><br>activities</div>
               <span class="chevron" aria-hidden="true">⌄</span>
             </summary>
             <div class="day-content">
@@ -337,12 +329,11 @@
             </div>
           </details>
 
-          <details class="day-card" data-day="2">
+          <details class="day-card" data-day="2" hidden>
             <summary class="day-summary">
               <div class="day-index-wrap"><span class="day-index">Day 2</span></div>
               <div class="summary-field" data-role="date"><span class="field-label">Date</span><span class="field-value" data-date>Loading…</span></div>
               <div class="summary-field" data-role="location"><span class="field-label">Location</span><span class="field-value" data-location>Loading…</span></div>
-              <div class="day-count-badge"><span class="count-number" data-count>—</span><br>activities</div>
               <span class="chevron" aria-hidden="true">⌄</span>
             </summary>
             <div class="day-content">
@@ -351,12 +342,11 @@
             </div>
           </details>
 
-          <details class="day-card" data-day="3">
+          <details class="day-card" data-day="3" hidden>
             <summary class="day-summary">
               <div class="day-index-wrap"><span class="day-index">Day 3</span></div>
               <div class="summary-field" data-role="date"><span class="field-label">Date</span><span class="field-value" data-date>Loading…</span></div>
               <div class="summary-field" data-role="location"><span class="field-label">Location</span><span class="field-value" data-location>Loading…</span></div>
-              <div class="day-count-badge"><span class="count-number" data-count>—</span><br>activities</div>
               <span class="chevron" aria-hidden="true">⌄</span>
             </summary>
             <div class="day-content">
@@ -404,38 +394,6 @@
       return (table?.rows || []).map(row => (row?.c || []).map(cellText));
     }
 
-    function makeDateKey(year, month, day) {
-      const date = new Date(Date.UTC(year, month - 1, day));
-      if (date.getUTCFullYear() !== year || date.getUTCMonth() + 1 !== month || date.getUTCDate() !== day) return null;
-      return String(year).padStart(4, "0") + "-" + String(month).padStart(2, "0") + "-" + String(day).padStart(2, "0");
-    }
-
-    function dateKeyFromText(value) {
-      const text = String(value || "").trim();
-      let match = text.match(/^(\d{4})[/.\-](\d{1,2})[/.\-](\d{1,2})$/);
-      if (match) return makeDateKey(Number(match[1]), Number(match[2]), Number(match[3]));
-      match = text.match(/^(\d{1,2})[/.\-](\d{1,2})[/.\-](\d{2,4})$/);
-      if (match) {
-        let year = Number(match[3]);
-        if (year < 100) year += year < 50 ? 2000 : 1900;
-        return makeDateKey(year, Number(match[2]), Number(match[1]));
-      }
-      const months = { jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12 };
-      match = text.match(/^(\d{1,2})\s+([A-Za-z]{3,})[,]?\s+(\d{4})$/);
-      if (match) return makeDateKey(Number(match[3]), months[match[2].slice(0, 3).toLowerCase()], Number(match[1]));
-      match = text.match(/^([A-Za-z]{3,})\s+(\d{1,2}),?\s+(\d{4})$/);
-      if (match) return makeDateKey(Number(match[3]), months[match[1].slice(0, 3).toLowerCase()], Number(match[2]));
-      return null;
-    }
-
-    function malaysiaTodayKey() {
-      const parts = new Intl.DateTimeFormat("en-GB", {
-        timeZone: "Asia/Kuala_Lumpur", year: "numeric", month: "2-digit", day: "2-digit"
-      }).formatToParts(new Date());
-      const values = Object.fromEntries(parts.filter(part => part.type !== "literal").map(part => [part.type, part.value]));
-      return values.year + "-" + values.month + "-" + values.day;
-    }
-
     function isDateText(value) {
       return /^\d{1,2}[/.\-]\d{1,2}[/.\-]\d{2,4}$/.test(value) || /^\d{1,2} [A-Za-z]{3} \d{4}$/.test(value) || /^Date\(/.test(value);
     }
@@ -446,7 +404,7 @@
       const metadataRows = rows.slice(0, headerIndex >= 0 ? headerIndex : Math.min(3, rows.length));
       const metadata = metadataRows.flat();
       const date = metadata.find(isDateText) || "Date not listed";
-      const location = metadata.find(value => value && value !== date && !/^(activities|activity|time)$/i.test(value) && !/^Date\(/.test(value)) || "Location not listed";
+      const location = metadata.find(value => value && value !== date && !/^(date|location|activities|activity|time)$/i.test(value) && !/^Date\(/.test(value)) || "Location not listed";
       const header = headerIndex >= 0 ? rows[headerIndex] : [];
       let activityIndex = header.findIndex(value => /^(activities|activity)$/i.test(value));
       if (activityIndex < 0) activityIndex = 1;
@@ -457,7 +415,7 @@
         time: row[timeIndex] || "",
         activity: row[activityIndex] || ""
       })).filter(item => item.time || item.activity).filter(item => !/^(activities|activity|time)$/i.test(item.activity));
-      return { date, dateKey: dateKeyFromText(date), location, activities };
+      return { date, location, activities };
     }
 
     function requestTab(tab) {
@@ -503,24 +461,39 @@
     function updateAvailability() {
       const countElement = document.getElementById("available-day-count");
       const labelElement = document.getElementById("available-day-label");
-      if (days.some(day => !day.cache)) {
-        countElement.textContent = "—";
-        labelElement.textContent = "days available";
-        return;
-      }
-      const today = malaysiaTodayKey();
-      const available = days.filter(day =>
-        day.cache.activities.length > 0 && day.cache.dateKey && day.cache.dateKey >= today
-      ).length;
+      const available = days.filter(day => day.cache && day.cache.activities.length > 0).length;
       countElement.textContent = String(available);
       labelElement.textContent = available === 1 ? "day available" : "days available";
     }
 
+    function hasScheduleData(schedule) {
+      return Boolean(schedule?.activities?.some(item => item.time || item.activity));
+    }
+
+    function scheduleSignature(schedule) {
+      return JSON.stringify({
+        date: schedule.date,
+        location: schedule.location,
+        activities: schedule.activities.map(item => [item.time, item.activity])
+      });
+    }
+
+    function hideDay(day) {
+      day.cache = null;
+      day.element.hidden = true;
+      day.element.open = false;
+      day.element.querySelector("[data-stale]").classList.remove("is-visible");
+    }
+
     function renderSchedule(day, schedule) {
       const card = day.element;
+      if (!hasScheduleData(schedule)) {
+        hideDay(day);
+        return;
+      }
+      card.hidden = false;
       setCellText(card.querySelector("[data-date]"), schedule.date);
       setCellText(card.querySelector("[data-location]"), schedule.location);
-      setCellText(card.querySelector("[data-count]"), String(schedule.activities.length).padStart(2, "0"));
       const body = card.querySelector("[data-rows]");
       body.replaceChildren();
       if (!schedule.activities.length) {
@@ -553,9 +526,10 @@
         card.querySelector("[data-stale]").classList.add("is-visible");
         return;
       }
+      card.hidden = true;
+      card.open = false;
       setCellText(card.querySelector("[data-date]"), "Unavailable");
       setCellText(card.querySelector("[data-location]"), "Unavailable");
-      setCellText(card.querySelector("[data-count]"), "—");
       const body = card.querySelector("[data-rows]");
       body.replaceChildren();
       const row = document.createElement("tr");
@@ -582,14 +556,33 @@
       const outcomes = await Promise.all(days.map(async day => {
         try {
           const table = await requestTab(day.tab);
-          renderSchedule(day, parseSchedule(table));
-          return true;
+          return { day, schedule: parseSchedule(table), error: null };
         } catch (error) {
-          showDayError(day, error);
-          return false;
+          return { day, schedule: null, error };
         }
       }));
-      const failures = outcomes.filter(success => !success).length;
+      const seenSchedules = new Set();
+      let failures = 0;
+      outcomes.forEach(({ day, schedule, error }) => {
+        if (error) {
+          failures += 1;
+          showDayError(day, error);
+          return;
+        }
+        if (!hasScheduleData(schedule)) {
+          hideDay(day);
+          return;
+        }
+        const signature = scheduleSignature(schedule);
+        if (seenSchedules.has(signature)) {
+          // Google Sheets can return the first tab when a requested tab is missing.
+          // Hide that duplicate so an unavailable day does not appear as a copy.
+          hideDay(day);
+          return;
+        }
+        seenSchedules.add(signature);
+        renderSchedule(day, schedule);
+      });
       updateAvailability();
       const syncedAt = timeNow();
       if (failures === 0) {
@@ -617,5 +610,5 @@
 
     refreshSchedule();
   </script>
-</body>
+<script type="module">import { mountSiteWidget } from "/_sites/dispatch-assets/sites-widget.js";mountSiteWidget({"kind":"editor-composer","mobileEnabled":false,"environment":"production","chatgptOrigin":"https://chatgpt.com","locale":"en-US","accountId":"personal","projectId":"appgprj_6ad528e736a48191bab18b1467a46449","projectTitle":"KREJUV FEC Blowdown Tie-In"});</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4cb8ebb5b713c5c',t:'MTc5MjM2ODYwMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
