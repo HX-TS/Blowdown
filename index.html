@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
   <meta name="description" content="KREJUV FEC Blowdown Tie-In">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <title>KREJUV FEC — Blowdown Tie-In</title>
   <style>
     :root {
@@ -166,7 +167,7 @@
     .day-summary {
       min-height: 75px;
       display: grid;
-      grid-template-columns: minmax(130px, 1.05fr) minmax(110px, .85fr) minmax(150px, 1.2fr) 20px;
+      grid-template-columns: minmax(130px, 1.05fr) minmax(110px, .85fr) minmax(130px, 1.05fr) minmax(155px, 1.2fr) 20px;
       align-items: center;
       gap: 16px;
       padding: 10px 17px;
@@ -191,6 +192,12 @@
       padding-left: 14px;
       border-left: 1px solid var(--soft-line);
     }
+    .eptw-field[hidden] { display: none; }
+    .eptw-field { align-self: stretch; }
+    .eptw-links { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
+    .eptw-link, .eptw-number { font-size: 11px; font-weight: 700; line-height: 1.2; font-variant-numeric: tabular-nums; }
+    .eptw-link { color: var(--ink); text-decoration-color: #e0001b; text-underline-offset: 2px; }
+    .eptw-link:hover { color: #a00014; }
     .field-label {
       display: block;
       margin-bottom: 4px;
@@ -206,6 +213,7 @@
       width: 20px;
       height: 20px;
       place-items: center;
+      grid-column: 5;
       font-size: 15px;
       line-height: 1;
       transition: transform .18s ease;
@@ -247,9 +255,9 @@
       .section-controls { width: 100%; gap: 13px; }
       .text-button { min-height: 25px; font-size: 8px; }
       .day-summary {
-        min-height: 88px;
+        min-height: 100px;
         grid-template-columns: minmax(0, 1fr) 19px;
-        grid-template-rows: auto auto auto;
+        grid-template-rows: auto auto auto auto;
         column-gap: 9px;
         row-gap: 1px;
         padding: 10px 12px;
@@ -258,9 +266,13 @@
       .summary-field { min-height: 0; flex-direction: row; justify-content: flex-start; align-items: baseline; gap: 7px; padding-left: 0; border-left: 0; }
       .summary-field[data-role="date"] { grid-column: 1; grid-row: 2; }
       .summary-field[data-role="location"] { grid-column: 1; grid-row: 3; }
+      .summary-field[data-role="eptw"] { grid-column: 1; grid-row: 4; align-self: start; }
+      .eptw-field:not([hidden]) { flex-direction: row; align-items: flex-start; gap: 7px; }
+      .eptw-links { gap: 2px; }
+      .eptw-link, .eptw-number { font-size: 10px; }
       .field-label { flex: 0 0 auto; margin: 0; font-size: 7px; }
       .field-value { min-width: 0; font-size: 10px; }
-      .chevron { grid-column: 2; grid-row: 1 / span 3; }
+      .chevron { grid-column: 2; grid-row: 1 / span 4; }
       th:first-child, td:first-child { width: 82px; }
       th { padding: 9px 11px; font-size: 8px; }
       td { padding: 11px; font-size: 11px; }
@@ -321,6 +333,7 @@
               <div class="day-index-wrap"><span class="day-index">Day 1</span></div>
               <div class="summary-field" data-role="date"><span class="field-label">Date</span><span class="field-value" data-date>Loading…</span></div>
               <div class="summary-field" data-role="location"><span class="field-label">Location</span><span class="field-value" data-location>Loading…</span></div>
+              <div class="summary-field eptw-field" data-role="eptw"><span class="field-label">EPTW No.</span><span class="eptw-links" data-eptw>—</span></div>
               <span class="chevron" aria-hidden="true">⌄</span>
             </summary>
             <div class="day-content">
@@ -334,6 +347,7 @@
               <div class="day-index-wrap"><span class="day-index">Day 2</span></div>
               <div class="summary-field" data-role="date"><span class="field-label">Date</span><span class="field-value" data-date>Loading…</span></div>
               <div class="summary-field" data-role="location"><span class="field-label">Location</span><span class="field-value" data-location>Loading…</span></div>
+              <div class="summary-field eptw-field" data-role="eptw"><span class="field-label">EPTW No.</span><span class="eptw-links" data-eptw>—</span></div>
               <span class="chevron" aria-hidden="true">⌄</span>
             </summary>
             <div class="day-content">
@@ -347,6 +361,7 @@
               <div class="day-index-wrap"><span class="day-index">Day 3</span></div>
               <div class="summary-field" data-role="date"><span class="field-label">Date</span><span class="field-value" data-date>Loading…</span></div>
               <div class="summary-field" data-role="location"><span class="field-label">Location</span><span class="field-value" data-location>Loading…</span></div>
+              <div class="summary-field eptw-field" data-role="eptw"><span class="field-label">EPTW No.</span><span class="eptw-links" data-eptw>—</span></div>
               <span class="chevron" aria-hidden="true">⌄</span>
             </summary>
             <div class="day-content">
@@ -401,10 +416,16 @@
     function parseSchedule(table) {
       const rows = gvizRows(table);
       const headerIndex = rows.findIndex(row => row.some(value => /^(activities|activity)$/i.test(value)));
-      const metadataRows = rows.slice(0, headerIndex >= 0 ? headerIndex : Math.min(3, rows.length));
-      const metadata = metadataRows.flat();
-      const date = metadata.find(isDateText) || "Date not listed";
-      const location = metadata.find(value => value && value !== date && !/^(date|location|activities|activity|time)$/i.test(value) && !/^Date\(/.test(value)) || "Location not listed";
+      const metadataRows = (table?.rows || []).slice(0, headerIndex >= 0 ? headerIndex : Math.min(3, rows.length));
+      const metadata = rows.slice(0, headerIndex >= 0 ? headerIndex : Math.min(3, rows.length)).flat();
+      const metadataValue = label => {
+        const labelPattern = new RegExp("^\\s*" + label + "\\s*:?\\s*$", "i");
+        const row = metadataRows.find(candidate => labelPattern.test(cellText(candidate?.c?.[0])));
+        return row ? cellText(row.c?.[1]) : "";
+      };
+      const date = metadataValue("date") || metadata.find(isDateText) || "Date not listed";
+      const location = metadataValue("location") || metadataRows.map(row => row?.c || []).map(cells => cells.map(cellText)).find(cells => cells.some(value => /^location\s*:?$/i.test(value)))?.[1] || metadata.find(value => value && value !== date && !/^(date|location|eptw(?:\s*(?:no|number))?|activities|activity|time)$/i.test(value) && !/^Date\(/.test(value)) || "Location not listed";
+      const eptw = parseEptwRows(metadataRows);
       const header = headerIndex >= 0 ? rows[headerIndex] : [];
       let activityIndex = header.findIndex(value => /^(activities|activity)$/i.test(value));
       if (activityIndex < 0) activityIndex = 1;
@@ -415,7 +436,50 @@
         time: row[timeIndex] || "",
         activity: row[activityIndex] || ""
       })).filter(item => item.time || item.activity).filter(item => !/^(activities|activity|time)$/i.test(item.activity));
-      return { date, location, activities };
+      return { date, location, eptw, activities };
+    }
+
+    function deepStrings(value, depth = 0) {
+      if (depth > 4 || value == null) return [];
+      if (typeof value === "string" || typeof value === "number") return [String(value)];
+      if (Array.isArray(value)) return value.flatMap(item => deepStrings(item, depth + 1));
+      if (typeof value === "object") return Object.values(value).flatMap(item => deepStrings(item, depth + 1));
+      return [];
+    }
+
+    function safeHttpUrl(value) {
+      const match = String(value || "").match(/https?:\/\/[^\s"'<>]+/i);
+      if (!match) return "";
+      const candidate = match[0].replace(/[),.;]+$/, "");
+      try {
+        const url = new URL(candidate);
+        return url.protocol === "https:" || url.protocol === "http:" ? url.href : "";
+      } catch (_) { return ""; }
+    }
+
+    function parseEptwRows(rows) {
+      const permits = [];
+      let previousRowWasEptw = false;
+      rows.forEach(row => {
+        const cells = row?.c || [];
+        const label = cellText(cells[0]).replace(/:$/, "").trim();
+        const strings = cells.flatMap(cell => deepStrings(cell));
+        const combined = strings.join(" ");
+        const payload = cells.slice(1).flatMap(cell => deepStrings(cell)).join(" ");
+        const explicitEptwRow = /^eptw\b/i.test(label) || /\beptw(?:\s*(?:no\.?|number))?\s*[:#-]/i.test(payload);
+        const continuationEptwRow = !label && previousRowWasEptw && /https?:\/\//i.test(payload) && /\b\d{5,}\b/.test(payload.replace(/https?:\/\/[^\s"'<>]+/ig, " "));
+        if (!explicitEptwRow && !continuationEptwRow) {
+          if (label || payload) previousRowWasEptw = false;
+          return;
+        }
+        previousRowWasEptw = true;
+        const url = strings.map(safeHttpUrl).find(Boolean) || "";
+        const visibleText = combined.replace(/https?:\/\/[^\s"'<>]+/ig, " ").replace(/\s+/g, " ").trim();
+        const number = visibleText.match(/\b\d{5,}\b/)?.[0] || visibleText.replace(/^eptw(?:\s*(?:no\.?|number))?\s*[:#-]?\s*/i, "").trim();
+        if (!number && !url) return;
+        if (!permits.some(permit => permit.number === (number || "EPTW") && permit.url === url)) permits.push({ number: number || "EPTW", url });
+      });
+      return permits;
     }
 
     function requestTab(tab) {
@@ -474,6 +538,7 @@
       return JSON.stringify({
         date: schedule.date,
         location: schedule.location,
+        eptw: schedule.eptw || [],
         activities: schedule.activities.map(item => [item.time, item.activity])
       });
     }
@@ -494,6 +559,24 @@
       card.hidden = false;
       setCellText(card.querySelector("[data-date]"), schedule.date);
       setCellText(card.querySelector("[data-location]"), schedule.location);
+      const eptwField = card.querySelector('[data-role="eptw"]');
+      const eptwLinks = card.querySelector("[data-eptw]");
+      eptwLinks.replaceChildren();
+      (schedule.eptw || []).forEach(permit => {
+        const item = permit.url ? document.createElement("a") : document.createElement("span");
+        item.className = permit.url ? "eptw-link" : "eptw-number";
+        item.textContent = permit.number;
+        if (permit.url) {
+          item.href = permit.url;
+          item.target = "_blank";
+          item.rel = "noopener noreferrer";
+          item.setAttribute("aria-label", "Open EPTW " + permit.number);
+          item.addEventListener("click", event => event.stopPropagation());
+        }
+        eptwLinks.append(item);
+      });
+      if (!(schedule.eptw || []).length) eptwLinks.textContent = "—";
+      eptwField.hidden = false;
       const body = card.querySelector("[data-rows]");
       body.replaceChildren();
       if (!schedule.activities.length) {
@@ -610,5 +693,5 @@
 
     refreshSchedule();
   </script>
-<script type="module">import { mountSiteWidget } from "/_sites/dispatch-assets/sites-widget.js";mountSiteWidget({"kind":"editor-composer","mobileEnabled":false,"environment":"production","chatgptOrigin":"https://chatgpt.com","locale":"en-US","accountId":"personal","projectId":"appgprj_6ad528e736a48191bab18b1467a46449","projectTitle":"KREJUV FEC Blowdown Tie-In"});</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4cb8ebb5b713c5c',t:'MTc5MjM2ODYwMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script type="module">import { mountSiteWidget } from "/_sites/dispatch-assets/sites-widget.js";mountSiteWidget({"kind":"editor-composer","mobileEnabled":false,"environment":"production","chatgptOrigin":"https://chatgpt.com","locale":"en-US","accountId":"personal","projectId":"appgprj_6ad528e736a48191bab18b1467a46449","projectTitle":"KREJUV FEC Blowdown Tie-In"});</script></body>
 </html>
