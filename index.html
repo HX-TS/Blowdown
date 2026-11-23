@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#080808">
   <meta name="description" content="KREJUV FEC Blowdown Tie-In">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <title>KREJUV FEC — Blowdown Tie-In</title>
@@ -293,28 +293,49 @@
       *, *::before, *::after { transition-duration: .01ms !important; }
     }
   </style>
+  <link rel="stylesheet" href="/HAFIZ-KREJUV/site-theme.css">
+  <link rel="stylesheet" href="blowdown-theme.css">
+  <script src="/HAFIZ-KREJUV/public-config.js" defer></script>
+  <script src="/HAFIZ-KREJUV/public-data.js" defer></script>
+  <script src="/HAFIZ-KREJUV/site-theme.js" defer></script>
 </head>
-<body>
-  <div class="page-shell">
-    <header class="topbar">
-      <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>KREJUV FEC</span></div>
-    </header>
+<body class="page-blowdown" data-page="blowdown">
+  <a class="site-skip" href="#daily-activities">Skip to daily activities</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-brand" href="/HAFIZ-KREJUV/" aria-label="KREJUV FEC home">KREJUV / FEC</a>
+      <button id="site-menu-toggle" class="site-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span><span></span></button>
+      <nav id="site-navigation" class="site-nav" aria-label="Reference navigation">
+        <div class="site-dropdown">
+          <button class="site-dropdown-toggle" type="button" aria-expanded="false" aria-controls="main-site-links">MAIN SITE</button>
+          <div id="main-site-links" class="site-dropdown__panel" hidden><span class="site-menu-empty">Loading reference links…</span></div>
+        </div>
+        <div class="site-dropdown">
+          <button class="site-dropdown-toggle" type="button" aria-expanded="false" aria-controls="historical-event-links">HISTORICAL EVENT</button>
+          <div id="historical-event-links" class="site-dropdown__panel" hidden><span class="site-menu-empty">Loading reference links…</span></div>
+        </div>
+        <a class="site-nav__link" href="/HAFIZ-KREJUV/SUMMARY/">SUMMARY</a>
+      </nav>
+    </div>
+  </header>
+  <section class="site-hero" aria-labelledby="page-title">
+    <img class="site-hero__image" src="assets/hero-blowdown-composite.webp" width="1983" height="793" alt="Composite of the KREJUV team working on valves, confined-space access, night ventilation and equipment checks" fetchpriority="high">
+    <div class="site-hero__content">
+      <p class="hero-eyebrow">KREJUV / FEC · HISTORICAL EVENT</p>
+      <h1 class="site-hero__title" id="page-title">BLOWDOWN TIE-IN</h1>
+      <p class="site-hero__subtitle">DAILY ACTIVITIES &amp; PERMIT REFERENCE</p>
+      <a class="site-hero__action" href="#daily-activities">VIEW ACTIVITIES</a>
+    </div>
+  </section>
 
-    <main>
-      <section class="hero" aria-labelledby="page-title">
-        <h1 id="page-title"><span>Blowdown Tie-In</span></h1>
-        <div class="hero-bottom">
+  <main class="page-shell" id="daily-activities" tabindex="-1">
+      <section class="schedule-section" aria-labelledby="schedule-title">
+        <div class="section-heading">
+          <h2 class="section-label" id="schedule-title">Daily activities</h2>
           <div class="day-count" id="availability-badge" aria-live="polite">
             <span id="available-day-count">—</span>
             <span id="available-day-label">days available</span>
           </div>
-        </div>
-      </section>
-      <div class="title-divider" aria-hidden="true"></div>
-
-      <section class="schedule-section" aria-labelledby="schedule-title">
-        <div class="section-heading">
-          <h2 class="section-label" id="schedule-title">Daily activities</h2>
           <div class="section-controls" aria-label="Page controls">
             <button class="text-button" id="expand-all" type="button">Expand all</button>
             <button class="text-button" id="collapse-all" type="button">Collapse all</button>
@@ -344,9 +365,8 @@
           </details>
         </template>
       </section>
-    </main>
-
-  </div>
+  </main>
+  <footer class="site-footer site-credit-footer"><span class="footer-credit">FLY TECHSMITH</span></footer>
 
   <script>
     "use strict";
@@ -714,3 +734,4 @@
   </script>
 </body>
 </html>
+
