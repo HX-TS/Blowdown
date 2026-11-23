@@ -1,7 +1,8 @@
 /* Blowdown follows the shared KREJUV theme; schedule behavior stays in index.html. */
 :root { color-scheme:dark; --ink:#f5f3ee; --paper:#080808; --muted:#b8b5b0; --soft-line:#3a3a3a; --danger:#ff999f; --page-width:1480px; }
 .page-blowdown { background:var(--theme-bg); color:var(--theme-text); }
-.page-blowdown .site-hero { min-height:460px; }
+.page-blowdown .site-header__inner { max-width:1480px; }
+.page-blowdown .site-hero { width:min(1400px,calc(100% - 80px)); margin-inline:auto; min-height:460px; }
 .page-blowdown .site-hero__image { object-position:50% 42%; }
 .page-blowdown .site-hero::before { background:linear-gradient(90deg,#000b,transparent 76%),linear-gradient(0deg,#0006,transparent 70%); }
 .page-blowdown .site-hero__content { padding-top:110px; padding-bottom:90px; }
@@ -52,6 +53,7 @@ tbody tr:hover { background:#232323; }
 .error-card { color:var(--danger); }
 .site-footer { margin-top:32px; }
 @media(max-width:900px) {
+  .page-blowdown .site-hero { width:calc(100% - 48px); }
   .page-shell { padding-left:24px; padding-right:24px; }
   .section-heading { gap:18px; }
   .section-controls { flex-basis:100%; }
@@ -70,6 +72,8 @@ tbody tr:hover { background:#232323; }
   td { padding:13px 14px; font-size:12px; }
 }
 @media(max-width:700px) {
+  .page-blowdown .site-header__inner { padding-left:16px; padding-right:16px; }
+  .page-blowdown .site-hero { width:calc(100% - 32px); }
   .page-blowdown .site-hero { min-height:410px; }
   .page-blowdown .site-hero__image { object-position:60% 38%; }
   .page-blowdown .site-hero__content { padding:95px 20px 80px; }
